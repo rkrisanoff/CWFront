@@ -13,18 +13,11 @@ class DestroyRobotComponent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeAsteroid = this.onChangeAsteroid.bind(this);
     this.state = {
       robotId: props.id,
       loading: false,
       message: ""
     };
-  }
-
-  onChangeAsteroid(e) {
-    this.setState({
-      asteroid: e.target.value
-    });
   }
 
 

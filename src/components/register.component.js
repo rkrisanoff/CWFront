@@ -41,10 +41,12 @@ export default class Register extends Component {
     this.handleRegister = this.handleRegister.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangePasswordConfirmation = this.onChangePasswordConfirmation.bind(this);
 
     this.state = {
       username: "",
       password: "",
+      password_confirmation:"",
       successful: false,
       message: ""
     };
@@ -61,7 +63,11 @@ export default class Register extends Component {
       password: e.target.value
     });
   }
-
+  onChangePasswordConfirmation(e) {
+    this.setState({
+      password_confirmation: e.target.value
+    });
+  }
   handleRegister(e) {
     e.preventDefault();
 
@@ -75,7 +81,8 @@ export default class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.register(
         this.state.username,
-        this.state.password
+        this.state.password,
+        this.state.password_confirmation
       ).then(
         response => {
           this.setState({
@@ -138,6 +145,17 @@ export default class Register extends Component {
                     name="password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
+                    validations={[required, vpassword]}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Confirm Password</label>
+                  <Input
+                    type="password"
+                    className="form-control"
+                    name="password_confirmation"
+                    value={this.state.password_confirmation}
+                    onChange={this.onChangePasswordConfirmation}
                     validations={[required, vpassword]}
                   />
                 </div>

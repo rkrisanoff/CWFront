@@ -4,9 +4,12 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-// import AuthService from "../../services/auth.service";
+import AuthService from "../../../services/auth.service";
+import authHeader from '../../../services/auth-header';
+import axios from 'axios';
 
-// import { withRouter } from '../common/with-router';
+import { withRouter } from '../../../common/with-router';
+// import userService from "../../../services/user.service";
 
 const required = value => {
   if (!value) {
@@ -46,33 +49,43 @@ class MoveRobotComponent extends Component {
       loading: true
     });
 
-    this.form.validateAll();
+    // this.form.validateAll();
 
-    // if (this.checkBtn.context._errors.length === 0) {
-    //   AuthService.login(this.state.username, this.state.password).then(
-    //     () => {
-    //       this.props.router.navigate("/profile");
-    //       window.location.reload();
-    //     },
-    //     error => {
-    //       const resMessage =
-    //         (error.response &&
-    //           error.response.data &&
-    //           error.response.data.message) ||
-    //         error.message ||
-    //         error.toString();
+    if (this.checkBtn.context._errors.length === 0) {
+      console.log(authHeader())
+      axios({
+        method: 'get',
+        url: 'http://localhost:8080/api/employee/321321123',
+        data: {
+          firstName: 'Fred',
+          lastName: 'Flintstone',
+          asteroid_id:this.state.asteroid,
+          robot_id:this.props.id
 
-    //       this.setState({
-    //         loading: false,
-    //         message: resMessage
-    //       });
-    //     }
-    //   );
-    // } else {
-    //   this.setState({
-    //     loading: false
-    //   });
-    // }
+        },
+        headers: authHeader()
+      }).then(
+        () => {
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
+        }
+      );
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
     this.setState({
       message: `fuck you ${Math.random(100)}`,
       loading: false
@@ -94,7 +107,7 @@ class MoveRobotComponent extends Component {
             }}
           >
             Choose where are you going to move Robot
-            <br/>
+            <br />
             Specify asteroid id
             <div className="form-group">
               <label htmlFor="asteroid">Asteroid</label>
@@ -135,5 +148,5 @@ class MoveRobotComponent extends Component {
     );
   }
 }
-export default MoveRobotComponent;
-// export default withRouter(Login);
+// export default MoveRobotComponent;
+export default withRouter(MoveRobotComponent);

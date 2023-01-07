@@ -84,7 +84,7 @@ class UpgradeBrainComponent extends Component {
 
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Move Robot into Asteroid</Modal.Title>
+          <Modal.Title>Upgrade Brain</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form

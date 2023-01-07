@@ -10,9 +10,9 @@ import UpgradeBrainComponent from "./robots/upgrade-brain";
 import UpgradeEyesComponent from "./robots/upgrade-eyes";
 import DestroyRobotComponent from "./robots/destroy-robot";
 
-// import AuthService from "../../services/auth.service";
+import AuthService from "../../services/auth.service";
 
-// import { withRouter } from '../common/with-router';
+import { withRouter } from '../../common/with-router';
 
 const required = value => {
     if (!value) {
@@ -28,7 +28,6 @@ class BoardRobotOperator extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
-        // this.handleShow = this.handleShow.bind(this);
         this.handleUpdateRobot = this.handleUpdateRobot.bind(this);
         this.state = {
             robots: [
@@ -161,5 +160,5 @@ class BoardRobotOperator extends Component {
         );
     }
 }
-export default BoardRobotOperator;
-// export default withRouter(Login);
+// export default BoardRobotOperator;
+export default withRouter(BoardRobotOperator);

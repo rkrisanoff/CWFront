@@ -6,34 +6,23 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 // import AuthService from "../../services/auth.service";
 
-// import { withRouter } from '../common/with-router';
+import { withRouter } from '../../../common/with-router';
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
 
-class UpgradeEyesComponent extends Component {
+class AcceptTaskComponent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeEyes = this.onChangeEyes.bind(this);
-    this.state = {
-      robotId: props.id,
-      eyes: "",
+     this.state = {
+      taskId: props.id,
       loading: false,
       message: ""
     };
   }
 
-  onChangeEyes(e) {
+  onChangeAsteroid(e) {
     this.setState({
-      eyes: e.target.value
+      asteroid: e.target.value
     });
   }
 
@@ -45,8 +34,6 @@ class UpgradeEyesComponent extends Component {
       message: "",
       loading: true
     });
-
-    this.form.validateAll();
 
     // if (this.checkBtn.context._errors.length === 0) {
     //   AuthService.login(this.state.username, this.state.password).then(
@@ -78,63 +65,27 @@ class UpgradeEyesComponent extends Component {
       loading: false
     });
   }
-
+  Accepting
   render() {
     return (
 
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Upgrade Eyes</Modal.Title>
+          <Modal.Title>Accepting</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form
-            onSubmit={this.props.handleSubmit}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            Choose eyes you want to replace at robot
-            <br/>
-
-            Specify eyes id
-            <div className="form-group">
-              <label htmlFor="asteroid">Asteroid</label>
-              <Input
-                type="text"
-                className="form-control"
-                name={"eyes"}
-                value={this.state.eyes}
-                onChange={this.onChangeEyes}
-                validations={[required]}
-              />
-            </div>
-
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+          Are you sure that you want to accept the task?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.props.handleClose}>
             Cancel
           </Button>
           <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
-            Replace
+            Accept
           </Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
-export default UpgradeEyesComponent;
-// export default withRouter(Login);
+export default withRouter(AcceptTaskComponent);
