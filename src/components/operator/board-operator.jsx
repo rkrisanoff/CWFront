@@ -5,7 +5,6 @@ import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import MoveRobotComponent from "./robots/move-robot";
-import OperatorRobotComponent from "./robots/operator-robot";
 import UpgradeBodyComponent from "./robots/upgrade-body";
 import UpgradeBrainComponent from "./robots/upgrade-brain";
 import UpgradeEyesComponent from "./robots/upgrade-eyes";
