@@ -15,8 +15,7 @@ import BoardAdmin from "./components/board-admin.component";
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
-import ExtractBorumComponent from "./components/forms/extract-borum";
-
+import BoardRobotOperator from "./components/operator/board-operator";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -98,8 +97,18 @@ class App extends Component {
               </li>
             )}
             <li className="nav-item">
-              <Link to={"/operator"} className="nav-link">
-                operator
+              <Link to={"/operators/robots"} className="nav-link">
+                robots
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/operators/tasks"} className="nav-link">
+                tasks
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/operators/asteroids"} className="nav-link">
+                asteroids
               </Link>
             </li>
           </div>
@@ -145,7 +154,21 @@ class App extends Component {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/operator" element={<ExtractBorumComponent/>}/>
+            <Route path="/operators/robots" element={<BoardRobotOperator />} />
+            <Route path="/operators/asteroids" element={<BoardRobotOperator />} />
+            <Route path="/operators/tasks" element={<BoardRobotOperator />} />
+            <Route path="/operators/bodies" element={<BoardRobotOperator />} />
+            <Route path="/operators/eyes" element={<BoardRobotOperator />} />
+            <Route path="/operators/brains" element={<BoardRobotOperator />} />
+
+            <Route path="/manager/robots" element={<BoardRobotOperator />} />
+            <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
+            <Route path="/manager/tasks" element={<BoardRobotOperator />} />
+            <Route path="/manager/bodies" element={<BoardRobotOperator />} />
+            <Route path="/manager/eyes" element={<BoardRobotOperator />} />
+            <Route path="/manager/brains" element={<BoardRobotOperator />} />
+
+
           </Routes>
         </div>
 
