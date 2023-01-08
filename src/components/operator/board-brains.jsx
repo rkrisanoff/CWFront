@@ -5,25 +5,33 @@ import Form from "react-validation/build/form";
 import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../common/with-router';
+import userService from "../../services/user.service";
 
 class BoardBrain extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            eyes: [
-                {
-                    release_series: 1, name: 2, cost: 3, speed: 4
-                },
-                {
-                    release_series: 3, name: 2, cost: 3, speed: 4
-                },
-                {
-                    release_series: 2, name: 2, cost: 3, speed: 4
-                }
-            ],
+            brains: [],
         };
     }
-
+    componentDidMount() {
+        userService.get("brains/all")
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        brains: data.slice(0, 50)
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||error.toString();
+                        console.log(resMessage);
+                }
+            );
+    }
     render() {
         return (
             <div className="col-md-12">
@@ -35,7 +43,7 @@ class BoardBrain extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.eyes.map(
+                            {this.state.brains.map(
                                 ({ release_series, name, cost, speed }) => (
                                     <tr>
                                         <th scope="row">{release_series}

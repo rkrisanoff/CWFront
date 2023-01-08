@@ -19,25 +19,15 @@ const required = value => {
   }
 };
 
-class UpgradeEyesComponent extends Component {
+class ExploreAsteroidComponent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeEyes = this.onChangeEyes.bind(this);
     this.state = {
-      robotId: props.id,
-      eyes: "",
       loading: false,
       message: ""
     };
   }
-
-  onChangeEyes(e) {
-    this.setState({
-      eyes: e.target.value
-    });
-  }
-
 
   handleSubmit(e) {
     e.preventDefault();
@@ -50,9 +40,9 @@ class UpgradeEyesComponent extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      userService.post(`robots/${this.props.id}/update`,
+      userService.post(`asteroids/explore`,
       {
-        eyes_series:this.state.eyes,
+        robot_id:this.props.robot_id,
       })
       .then(
         () => {
@@ -84,57 +74,22 @@ class UpgradeEyesComponent extends Component {
 
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Upgrade Eyes</Modal.Title>
+          <Modal.Title>Exploring</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form
-            onSubmit={this.props.handleSubmit}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            Choose eyes you want to replace at robot
-            <br/>
-
-            Specify eyes id
-            <div className="form-group">
-              <label htmlFor="asteroid">Asteroid</label>
-              <Input
-                type="text"
-                className="form-control"
-                name={"eyes"}
-                value={this.state.eyes}
-                onChange={this.onChangeEyes}
-                validations={[required]}
-              />
-            </div>
-
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+          Explore new asteroid?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.props.handleClose}>
             Cancel
           </Button>
           <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
-            Replace
+            Explore
           </Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
-export default UpgradeEyesComponent;
+export default ExploreAsteroidComponent;
 // export default withRouter(Login);

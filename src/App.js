@@ -31,17 +31,20 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      showAdminBoard: false,
+      showOperatorBoard: false,
+      showManagerBoard: false,
       currentUser: undefined,
     };
   }
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
-    if (user) {
+    if (user && user.roles) {
       this.setState({
         currentUser: user,
-        // showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showOperatorBoard: user.roles.includes("operator"),
+        showManagerBoard: user.roles.includes("manager"),
+
       });
     }
 
@@ -57,7 +60,9 @@ class App extends Component {
   logOut() {
     AuthService.logout();
     this.setState({
-      // showAdminBoard: false,
+      showOperatorBoard: false,
+      showManagerBoard: false,
+
       currentUser: undefined,
     });
   }
@@ -81,52 +86,50 @@ class App extends Component {
               </li>
             )} */}
 
-            {currentUser && (<>
+            {currentUser && this.state.showOperatorBoard && (<>
 
-              {/* <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+              <li className="nav-item">
+                <Link to={"/operator/robots"} className="nav-link">
+                  robots
                 </Link>
               </li>
-             */}
-            <li className="nav-item">
-              <Link to={"/operator/robots"} className="nav-link">
-                robots
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/operator/tasks"} className="nav-link">
-                tasks
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/operator/asteroids"} className="nav-link">
-                asteroids
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/operator/eyes"} className="nav-link">
-              eyes
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/operator/brains"} className="nav-link">
-              brains
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/operator/bodies"} className="nav-link">
-              bodies
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/manager/spaceship"} className="nav-link">
-              spaceship
-              </Link>
-            </li>
+              <li className="nav-item">
+                <Link to={"/operator/tasks"} className="nav-link">
+                  tasks
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/operator/asteroids"} className="nav-link">
+                  asteroids
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/operator/eyes"} className="nav-link">
+                  eyes
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/operator/brains"} className="nav-link">
+                  brains
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/operator/bodies"} className="nav-link">
+                  bodies
+                </Link>
+              </li>
             </>)}
+            {currentUser && this.state.showManagerBoard && (<>
+              <li className="nav-item">
+                <Link to={"/manager/spaceship"} className="nav-link">
+                  spaceship
+                </Link>
+              </li>
+            </>)}
+
+
           </div>
-          
+
 
           {currentUser ? (
             <div className="navbar-nav ml-auto">
@@ -170,7 +173,7 @@ class App extends Component {
             <Route path="/operator/asteroids" element={<BoardAsteroid />} />
             <Route path="/operator/tasks" element={<BoardTasks />} />
             <Route path="/operator/bodies" element={<BoardBody />} />
-            <Route path="/operator/eyes" element={<BoardEyes/>} />
+            <Route path="/operator/eyes" element={<BoardEyes />} />
             <Route path="/operator/brains" element={<BoardBrain />} />
             <Route path="/manager/spaceship" element={<BoardSpaceship />} />
             {/* <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
@@ -183,7 +186,7 @@ class App extends Component {
           </Routes>
         </div>
 
-        <AuthVerify logOut={this.logOut}/>
+        <AuthVerify logOut={this.logOut} />
       </div>
     );
   }

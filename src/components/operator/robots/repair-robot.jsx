@@ -23,7 +23,6 @@ class RepairRobotComponent extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            robotId: props.id,
             loading: false,
             message: ""
         };
@@ -74,7 +73,7 @@ class RepairRobotComponent extends Component {
                     <Modal.Title>Repairing</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                Are you sure that you want to repair the robot with id = {this.state.robotId}?
+                Are you sure that you want to repair the robot with id = {this.props.id}?
 
                 </Modal.Body>
                 <Modal.Footer>

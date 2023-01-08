@@ -5,25 +5,33 @@ import Form from "react-validation/build/form";
 import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../common/with-router';
+import userService from "../../services/user.service";
 
 class BoardBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bodies: [
-                {
-                    release_series: 1, name: 2, cost: 3, max_hit_points: 4
-                },
-                {
-                    release_series: 3, name: 2, cost: 3, max_hit_points: 4
-                },
-                {
-                    release_series: 2, name: 2, cost: 3, max_hit_points: 4
-                }
-            ],
+            bodies: [],
         };
     }
-
+    componentDidMount() {
+        userService.get("bodies/all")
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        bodies: data.slice(0, 50)
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||error.toString();
+                        console.log(resMessage);
+                }
+            );
+    }
     render() {
         return (
             <div className="col-md-12">

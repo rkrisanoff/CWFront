@@ -3,7 +3,7 @@ import { withRouter } from "./with-router";
 
 const parseJwt = (token) => {
   try {
-    return JSON.parse(atob(token.split('.')[1]));
+    return JSON.parse(window.atob(token.split('.')[1]));
   } catch (e) {
     return null;
   }

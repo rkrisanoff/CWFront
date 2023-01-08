@@ -15,6 +15,10 @@ import AuthService from "../../services/auth.service";
 import { withRouter } from '../../common/with-router';
 import ExtractBorumComponent from "./robots/extract-borum";
 import RepairRobotComponent from "./robots/repair-robot";
+import userService from "../../services/user.service";
+import CreateRobotComponent from "./robots/create-robot";
+import ExploreAsteroidComponent from "./robots/explore-asteroid";
+
 
 const required = value => {
     if (!value) {
@@ -31,32 +35,10 @@ class BoardRobot extends Component {
         super(props);
         this.handleClose = this.handleClose.bind(this);
         this.handleUpdateRobot = this.handleUpdateRobot.bind(this);
+        this.handleCreateRobot = this.handleCreateRobot.bind(this);
+
         this.state = {
             robots: [
-                {
-                    "id": 1,
-                    "brain": 2,
-                    "body": 2,
-                    "eye": 3,
-                    "hit_points": 4,
-                    "asteroid": 5
-                },
-                {
-                    "id": 4,
-                    "brain": 2,
-                    "body": 2,
-                    "eye": 3,
-                    "hit_points": 4,
-                    "asteroid": 5
-                },
-                {
-                    "id": 2,
-                    "brain": 2,
-                    "body": 2,
-                    "eye": 3,
-                    "hit_points": 4,
-                    "asteroid": 5
-                }
             ],
             modals: {
                 move: false,
@@ -65,10 +47,15 @@ class BoardRobot extends Component {
                 upgradeBody: false,
                 upgradeEye: false,
                 destroy: false,
-                extract:false
+                extract: false,
+                create: false,
+                explore:false
             },
             actualRobotId: null
         };
+        const currentUser = AuthService.getCurrentUser();
+        console.log(currentUser);
+
     }
     handleUpdateRobot(id, modal) {
         this.setState({
@@ -77,12 +64,35 @@ class BoardRobot extends Component {
         })
     }
 
+    handleCreateRobot() {
+        this.setState({
+            modals: { ...this.state.modals, create: true }
+        })
+    }
+
     handleClose(modal) {
         this.setState({
             modals: { ...this.state.modals, [modal]: false }
         });
     }
-
+    componentDidMount() {
+        userService.get("robots/all")
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        robots: data.slice(0, 50)
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message || error.toString();
+                    console.log(resMessage);
+                }
+            );
+    }
 
     render() {
         return (
@@ -94,17 +104,29 @@ class BoardRobot extends Component {
                 <DestroyRobotComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("destroy")} isActive={this.state.modals.destroy} />
                 <ExtractBorumComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("extract")} isActive={this.state.modals.extract} />
                 <RepairRobotComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("repair")} isActive={this.state.modals.repair} />
+                <CreateRobotComponent operator_post_id={this.props.actualRobotId} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
+                <ExploreAsteroidComponent robot_id={this.state.actualRobotId} handleClose={() => this.handleClose("explore")} isActive={this.state.modals.explore} />
+
+                <h1> Robots </h1>
+                <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreateRobot()}>
+                    <i class="bi bi-robot"></i>
+                </button>
 
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
-                                {["id", "", "asteroid", "", "brain", "", "body", "", "eye", "", "hit_points", "", "", ""].map(value => <th scope="col">{value}</th>)}
+                                {["id", "", "asteroid", "", "brain", "", "body", "", "eyes", "", "hit_points", "", "", ""].map(value => <th scope="col">{value}</th>)}
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.robots.map(
-                                ({ id, asteroid, brain, body, eye, hit_points }) => (
+                                ({ asteroid_id,
+                                    body_series,
+                                    brain_series,
+                                    eye_series,
+                                    hit_points,
+                                    id, }) => (
                                     <tr>
                                         <th scope="row">{id}
 
@@ -117,7 +139,7 @@ class BoardRobot extends Component {
                                             </button>
                                         </td>
 
-                                        <td>{asteroid}
+                                        <td>{asteroid_id}
 
                                         </td>
                                         <td>
@@ -129,7 +151,7 @@ class BoardRobot extends Component {
                                             </button>
                                         </td>
 
-                                        <td>{brain}
+                                        <td>{brain_series}
 
                                         </td>
                                         <td>
@@ -141,7 +163,7 @@ class BoardRobot extends Component {
                                             </button>
                                         </td>
 
-                                        <td>{body}
+                                        <td>{body_series}
 
                                         </td>
                                         <td>
@@ -152,7 +174,7 @@ class BoardRobot extends Component {
                                             </button>
                                         </td>
 
-                                        <td>{eye}
+                                        <td>{eye_series}
 
                                         </td>
                                         <td>
@@ -191,5 +213,4 @@ class BoardRobot extends Component {
         );
     }
 }
-// export default BoardRobotOperator;
 export default withRouter(BoardRobot);

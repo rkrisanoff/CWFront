@@ -4,13 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import AuthService from "../../../services/auth.service";
-import authHeader from '../../../services/auth-header';
-import axios from 'axios';
 
 import { withRouter } from '../../../common/with-router';
 import userService from "../../../services/user.service";
-// import userService from "../../../services/user.service";
 
 const required = value => {
   if (!value) {
@@ -50,14 +46,12 @@ class MoveRobotComponent extends Component {
       loading: true
     });
 
-    // this.form.validateAll();
+    this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      userService.get("employee/321321123",
+      userService.post(`robots/${this.props.id}/update`,
       {
         asteroid_id:this.state.asteroid,
-        robot_id:this.props.id
-
       })
       .then(
         () => {

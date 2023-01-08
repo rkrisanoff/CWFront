@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 // import AuthService from "../../services/auth.service";
 
 // import { withRouter } from '../common/with-router';
+import userService from "../../../services/user.service";
 
 const required = value => {
   if (!value) {
@@ -48,31 +49,34 @@ class UpgradeBrainComponent extends Component {
 
     this.form.validateAll();
 
-    // if (this.checkBtn.context._errors.length === 0) {
-    //   AuthService.login(this.state.username, this.state.password).then(
-    //     () => {
-    //       this.props.router.navigate("/profile");
-    //       window.location.reload();
-    //     },
-    //     error => {
-    //       const resMessage =
-    //         (error.response &&
-    //           error.response.data &&
-    //           error.response.data.message) ||
-    //         error.message ||
-    //         error.toString();
-
-    //       this.setState({
-    //         loading: false,
-    //         message: resMessage
-    //       });
-    //     }
-    //   );
-    // } else {
-      this.setState({
-        loading: false
-      });
-    // }
+    if (this.checkBtn.context._errors.length === 0) {
+        userService.post(`robots/${this.props.id}/update`,
+        {
+          brain_series:this.state.brain,
+        })
+        .then(
+          () => {
+            this.props.handleClose()
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+  
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
+        );
+      } else {
+        this.setState({
+          loading: false
+        });
+      }
   }
 
   render() {

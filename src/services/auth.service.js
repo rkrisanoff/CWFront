@@ -25,14 +25,14 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register({username,
+  register({ username,
     password,
     password_confirmation,
     first_name,
     last_name,
     patronymic,
     age,
-    gender}
+    gender }
   ) {
     return axios.post(API_URL + "register", {
       username,
@@ -47,7 +47,15 @@ class AuthService {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user){
+      const jwtData = user.accessToken.split('.')[1]
+      const decodedJwtJsonData = window.atob(jwtData)
+      const decodedJwtData = JSON.parse(decodedJwtJsonData)
+      user['roles'] = decodedJwtData.roles;
+    }
+
+    return user;
   }
 }
 
