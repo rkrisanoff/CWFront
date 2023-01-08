@@ -19,6 +19,7 @@ import BoardTasksOperator from "./components/operator/board-tasks";
 import BoardEyesOperator from "./components/operator/board-eyes";
 import BoardBrainOperator from "./components/operator/board-brains";
 import BoardBodyOperator from "./components/operator/board-bodies";
+import BoardAsteroidOperator from "./components/operator/board-asteroids";
 
 
 
@@ -168,7 +169,7 @@ class App extends Component {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/admin" element={<BoardAdmin />} />
             <Route path="/operator/robots" element={<BoardRobotOperator />} />
-            <Route path="/operator/asteroids" element={<BoardRobotOperator />} />
+            <Route path="/operator/asteroids" element={<BoardAsteroidOperator />} />
             <Route path="/operator/tasks" element={<BoardTasksOperator />} />
             <Route path="/operator/bodies" element={<BoardBodyOperator />} />
             <Route path="/operator/eyes" element={<BoardEyesOperator />} />

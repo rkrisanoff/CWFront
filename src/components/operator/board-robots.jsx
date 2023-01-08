@@ -13,6 +13,8 @@ import DestroyRobotComponent from "./robots/destroy-robot";
 import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../common/with-router';
+import ExtractBorumComponent from "./robots/extract-borum";
+import RepairRobotComponent from "./robots/repair-robot";
 
 const required = value => {
     if (!value) {
@@ -62,7 +64,8 @@ class BoardRobotOperator extends Component {
                 upgradeBrain: false,
                 upgradeBody: false,
                 upgradeEye: false,
-                destroy: false
+                destroy: false,
+                extract:false
             },
             actualRobotId: null
         };
@@ -89,6 +92,9 @@ class BoardRobotOperator extends Component {
                 <UpgradeBrainComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("upgradeBrain")} isActive={this.state.modals.upgradeBrain} />
                 <UpgradeEyesComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("upgradeEye")} isActive={this.state.modals.upgradeEye} />
                 <DestroyRobotComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("destroy")} isActive={this.state.modals.destroy} />
+                <ExtractBorumComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("extract")} isActive={this.state.modals.extract} />
+                <RepairRobotComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("repair")} isActive={this.state.modals.repair} />
+
                 <div>
                     <table class="table">
                         <thead>
@@ -103,52 +109,77 @@ class BoardRobotOperator extends Component {
                                         <th scope="row">{id}
 
                                         </th>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "destroy")}>
-                                            <i class="bi bi-x-octagon">
-                                            </i>
-                                        </button>
+                                        <td>
+
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "destroy")}>
+                                                <i class="bi bi-x-octagon">
+                                                </i>
+                                            </button>
+                                        </td>
+
                                         <td>{asteroid}
 
                                         </td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "move")}>
-                                            <i class="bi bi-arrows-move">
+                                        <td>
 
-                                            </i>
-                                        </button>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "move")}>
+                                                <i class="bi bi-arrows-move">
+
+                                                </i>
+                                            </button>
+                                        </td>
+
                                         <td>{brain}
 
                                         </td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBrain")}>
-                                            <i class="bi bi-android">
+                                        <td>
 
-                                            </i>
-                                        </button>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBrain")}>
+                                                <i class="bi bi-android">
+
+                                                </i>
+                                            </button>
+                                        </td>
+
                                         <td>{body}
 
                                         </td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBody")}>
-                                            <i class="bi bi-android2">
-                                            </i>
-                                        </button>
+                                        <td>
+
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBody")}>
+                                                <i class="bi bi-android2">
+                                                </i>
+                                            </button>
+                                        </td>
+
                                         <td>{eye}
 
                                         </td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeEye")}>
-                                            <i class="bi bi-eye">
-                                            </i>
-                                        </button>
+                                        <td>
+
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeEye")}>
+                                                <i class="bi bi-eye">
+                                                </i>
+                                            </button>
+                                        </td>
+
                                         <td>{hit_points}
 
                                         </td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "repair")}>
-                                            <i class="bi bi-wrench">
-                                            </i>
-                                        </button>
+                                        <td>
 
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "extract")}>
-                                            <i class="bi bi-minecart-loaded">
-                                            </i>
-                                        </button>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "repair")}>
+                                                <i class="bi bi-wrench">
+                                                </i>
+                                            </button>
+                                        </td>
+                                        <td>
+
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "extract")}>
+                                                <i class="bi bi-minecart-loaded">
+                                                </i>
+                                            </button>
+                                        </td>
 
                                     </tr>
                                 )

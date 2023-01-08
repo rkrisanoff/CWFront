@@ -4,9 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-// import AuthService from "../../services/auth.service";
+import authHeader from '../../../services/auth-header';
 
-// import { withRouter } from '../common/with-router';
+import { withRouter } from '../../../common/with-router';
 
 const required = value => {
     if (!value) {
@@ -18,7 +18,7 @@ const required = value => {
     }
 };
 
-class ExtractBorumComponent extends Component {
+class RepairRobotComponent extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +38,6 @@ class ExtractBorumComponent extends Component {
             loading: true
         });
 
-        this.form.validateAll();
 
         // if (this.checkBtn.context._errors.length === 0) {
         //   AuthService.login(this.state.username, this.state.password).then(
@@ -72,10 +71,10 @@ class ExtractBorumComponent extends Component {
 
             <Modal show={this.props.isActive} onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Extracting Bor</Modal.Title>
+                    <Modal.Title>Repairing</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                Are you sure that you want to robot to extract bor?
+                Are you sure that you want to repair the robot with id = {this.state.robotId}?
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -83,7 +82,7 @@ class ExtractBorumComponent extends Component {
                         Cancel
                     </Button>
                     <Button variant="primary" onClick={this.props.handleSubmit} disabled={this.state.loading}>
-                        Extract
+                        Repair
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -93,5 +92,4 @@ class ExtractBorumComponent extends Component {
         );
     }
 }
-export default ExtractBorumComponent;
-// export default withRouter(Login);
+export default withRouter(RepairRobotComponent);

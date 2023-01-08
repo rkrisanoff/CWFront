@@ -69,14 +69,10 @@ class UpgradeBrainComponent extends Component {
     //     }
     //   );
     // } else {
-    //   this.setState({
-    //     loading: false
-    //   });
+      this.setState({
+        loading: false
+      });
     // }
-    this.setState({
-      message: `fuck you ${Math.random(100)}`,
-      loading: false
-    });
   }
 
   render() {

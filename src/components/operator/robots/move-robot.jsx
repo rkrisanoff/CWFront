@@ -9,6 +9,7 @@ import authHeader from '../../../services/auth-header';
 import axios from 'axios';
 
 import { withRouter } from '../../../common/with-router';
+import userService from "../../../services/user.service";
 // import userService from "../../../services/user.service";
 
 const required = value => {
@@ -52,20 +53,15 @@ class MoveRobotComponent extends Component {
     // this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      console.log(authHeader())
-      axios({
-        method: 'get',
-        url: 'http://localhost:8080/api/employee/321321123',
-        data: {
-          firstName: 'Fred',
-          lastName: 'Flintstone',
-          asteroid_id:this.state.asteroid,
-          robot_id:this.props.id
+      userService.getRequest("employee/321321123",
+      {
+        asteroid_id:this.state.asteroid,
+        robot_id:this.props.id
 
-        },
-        headers: authHeader()
-      }).then(
+      })
+      .then(
         () => {
+          this.props.handleClose()
         },
         error => {
           const resMessage =
@@ -86,10 +82,6 @@ class MoveRobotComponent extends Component {
         loading: false
       });
     }
-    this.setState({
-      message: `fuck you ${Math.random(100)}`,
-      loading: false
-    });
   }
 
   render() {
@@ -148,5 +140,4 @@ class MoveRobotComponent extends Component {
     );
   }
 }
-// export default MoveRobotComponent;
 export default withRouter(MoveRobotComponent);
