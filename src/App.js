@@ -14,12 +14,13 @@ import BoardAdmin from "./components/board-admin.component";
 
 import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
-import BoardRobotOperator from "./components/operator/board-robots";
-import BoardTasksOperator from "./components/operator/board-tasks";
-import BoardEyesOperator from "./components/operator/board-eyes";
-import BoardBrainOperator from "./components/operator/board-brains";
-import BoardBodyOperator from "./components/operator/board-bodies";
-import BoardAsteroidOperator from "./components/operator/board-asteroids";
+import BoardRobot from "./components/operator/board-robots";
+import BoardTasks from "./components/operator/board-tasks";
+import BoardEyes from "./components/operator/board-eyes";
+import BoardBrain from "./components/operator/board-brains";
+import BoardBody from "./components/operator/board-bodies";
+import BoardAsteroid from "./components/operator/board-asteroids";
+import BoardSpaceship from "./components/manager/board-spaceships";
 
 
 
@@ -125,9 +126,14 @@ class App extends Component {
               bodies
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/manager/spaceship"} className="nav-link">
+              spaceship
+              </Link>
+            </li>
             </>)}
           </div>
-
+          
 
           {currentUser ? (
             <div className="navbar-nav ml-auto">
@@ -168,15 +174,14 @@ class App extends Component {
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<BoardUser />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/operator/robots" element={<BoardRobotOperator />} />
-            <Route path="/operator/asteroids" element={<BoardAsteroidOperator />} />
-            <Route path="/operator/tasks" element={<BoardTasksOperator />} />
-            <Route path="/operator/bodies" element={<BoardBodyOperator />} />
-            <Route path="/operator/eyes" element={<BoardEyesOperator />} />
-            <Route path="/operator/brains" element={<BoardBrainOperator />} />
-
-            {/* <Route path="/manager/robots" element={<BoardRobotOperator />} />
-            <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
+            <Route path="/operator/robots" element={<BoardRobot />} />
+            <Route path="/operator/asteroids" element={<BoardAsteroid />} />
+            <Route path="/operator/tasks" element={<BoardTasks />} />
+            <Route path="/operator/bodies" element={<BoardBody />} />
+            <Route path="/operator/eyes" element={<BoardEyes/>} />
+            <Route path="/operator/brains" element={<BoardBrain />} />
+            <Route path="/manager/spaceship" element={<BoardSpaceship />} />
+            {/* <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
             <Route path="/manager/tasks" element={<BoardRobotOperator />} />
             <Route path="/manager/bodies" element={<BoardRobotOperator />} />
             <Route path="/manager/eyes" element={<BoardRobotOperator />} />

@@ -6,7 +6,7 @@ import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../common/with-router';
 
-class BoardBrainOperator extends Component {
+class BoardBrain extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -59,4 +59,4 @@ class BoardBrainOperator extends Component {
         );
     }
 }
-export default withRouter(BoardBrainOperator);
+export default withRouter(BoardBrain);

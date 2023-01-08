@@ -15,11 +15,11 @@ class UserService {
   // getAdminBoard() {
   //   return axios.get(API_URL + 'admin', { headers: authHeader() });
   // }
-  getRequest(name){
+  get(name){
     return axios.get(API_URL + name, { headers: authHeader() });
 
   }
-  postRequest(target,data){
+  post(target,data){
     return axios({
       method:"post",
       url: API_URL + target,

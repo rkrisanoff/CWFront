@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 // import AuthService from "../../services/auth.service";
 
-// import { withRouter } from '../common/with-router';
+import { withRouter } from '../../../common/with-router';
 
 
 class DestroyRobotComponent extends Component {
@@ -84,5 +84,4 @@ class DestroyRobotComponent extends Component {
     );
   }
 }
-export default DestroyRobotComponent;
-// export default withRouter(Login);
+export default withRouter(DestroyRobotComponent);

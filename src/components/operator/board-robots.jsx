@@ -26,7 +26,7 @@ const required = value => {
     }
 };
 
-class BoardRobotOperator extends Component {
+class BoardRobot extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
@@ -192,4 +192,4 @@ class BoardRobotOperator extends Component {
     }
 }
 // export default BoardRobotOperator;
-export default withRouter(BoardRobotOperator);
+export default withRouter(BoardRobot);

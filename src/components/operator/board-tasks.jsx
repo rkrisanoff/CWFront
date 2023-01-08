@@ -6,7 +6,7 @@ import { withRouter } from '../../common/with-router';
 import AcceptTaskComponent from "./tasks/accept-task";
 
 
-class BoardTasksOperator extends Component {
+class BoardTask extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
@@ -82,5 +82,5 @@ class BoardTasksOperator extends Component {
         );
     }
 }
-// export default BoardRobotOperator;
-export default withRouter(BoardTasksOperator);
+
+export default withRouter(BoardTask);

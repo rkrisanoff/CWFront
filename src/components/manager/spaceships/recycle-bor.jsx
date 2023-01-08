@@ -4,13 +4,10 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import AuthService from "../../../services/auth.service";
-import authHeader from '../../../services/auth-header';
-import axios from 'axios';
+// import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../../common/with-router';
-import userService from "../../../services/user.service";
-// import userService from "../../../services/user.service";
+
 
 const required = value => {
   if (!value) {
@@ -22,22 +19,23 @@ const required = value => {
   }
 };
 
-class MoveRobotComponent extends Component {
+class RecycleBorComponent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeAsteroid = this.onChangeAsteroid.bind(this);
+    this.onChangeBorCount = this.onChangeBorCount.bind(this);
     this.state = {
-      robotId: props.id,
-      asteroid: "",
+      spaceshipId: props.id,
+      borType: props.borType,
+      borCount:0,
       loading: false,
       message: ""
     };
   }
 
-  onChangeAsteroid(e) {
+  onChangeBorCount(e) {
     this.setState({
-      asteroid: e.target.value
+        borCount: e.target.value
     });
   }
 
@@ -50,38 +48,33 @@ class MoveRobotComponent extends Component {
       loading: true
     });
 
-    // this.form.validateAll();
+    this.form.validateAll();
 
-    if (this.checkBtn.context._errors.length === 0) {
-      userService.get("employee/321321123",
-      {
-        asteroid_id:this.state.asteroid,
-        robot_id:this.props.id
+    // if (this.checkBtn.context._errors.length === 0) {
+    //   AuthService.login(this.state.username, this.state.password).then(
+    //     () => {
+    //       this.props.router.navigate("/profile");
+    //       window.location.reload();
+    //     },
+    //     error => {
+    //       const resMessage =
+    //         (error.response &&
+    //           error.response.data &&
+    //           error.response.data.message) ||
+    //         error.message ||
+    //         error.toString();
 
-      })
-      .then(
-        () => {
-          this.props.handleClose()
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
-        }
-      );
-    } else {
+    //       this.setState({
+    //         loading: false,
+    //         message: resMessage
+    //       });
+    //     }
+    //   );
+    // } else {
       this.setState({
         loading: false
       });
-    }
+    // }
   }
 
   render() {
@@ -89,7 +82,7 @@ class MoveRobotComponent extends Component {
 
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Move Robot into Asteroid</Modal.Title>
+          <Modal.Title>Recycle Bor</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -98,17 +91,17 @@ class MoveRobotComponent extends Component {
               this.form = c;
             }}
           >
-            Choose where are you going to move Robot
-            <br />
-            Specify asteroid id
+            Choose number of bor you want to recycle
+            <br/>
+            Specify number of bor
             <div className="form-group">
-              <label htmlFor="asteroid">Asteroid</label>
+              <label htmlFor="asteroid">number of bor</label>
               <Input
                 type="text"
                 className="form-control"
-                name={"asteroid"}
-                value={this.state.asteroid}
-                onChange={this.onChangeAsteroid}
+                name={"borCount"}
+                value={this.state.borCount}
+                onChange={this.onChangeBorCount}
                 validations={[required]}
               />
             </div>
@@ -133,11 +126,11 @@ class MoveRobotComponent extends Component {
             Cancel
           </Button>
           <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
-            Move
+            Recycle
           </Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
-export default withRouter(MoveRobotComponent);
+export default withRouter(RecycleBorComponent);
