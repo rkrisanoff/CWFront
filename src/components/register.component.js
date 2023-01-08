@@ -35,6 +35,36 @@ const vpassword = value => {
   }
 };
 
+const vage = value => {
+  if ((+value < 18) || (+value > 60)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The age must be between 18 and 60 ages
+      </div>
+    );
+  }
+}
+
+const vFLP = value => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        Must be between 3 and 20 characters.
+      </div>
+    );
+  }
+}
+
+const vgender = value => {
+  if ((value != "male") && (value != "female")) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        There are only two genders
+      </div>
+    );
+  }
+}
+
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -42,11 +72,22 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangePasswordConfirmation = this.onChangePasswordConfirmation.bind(this);
+    this.onChangeFirstName = this.onChangeFirstName.bind(this);
+    this.onChangeLastName = this.onChangeLastName.bind(this);
+    this.onChangePatronymic = this.onChangePatronymic.bind(this);
+    this.onChangeAge = this.onChangeAge.bind(this);
+    this.onChangeGender = this.onChangeGender.bind(this);
+
 
     this.state = {
       username: "",
       password: "",
-      password_confirmation:"",
+      password_confirmation: "",
+      first_name: "",
+      last_name: "",
+      patronymic: "",
+      age: null,
+      gender: null,
       successful: false,
       message: ""
     };
@@ -68,6 +109,34 @@ export default class Register extends Component {
       password_confirmation: e.target.value
     });
   }
+
+  onChangeFirstName(e) {
+    this.setState({
+      first_name: e.target.value
+    });
+  }
+  onChangeLastName(e) {
+    this.setState({
+      last_name: e.target.value
+    });
+  }
+  onChangePatronymic(e) {
+    this.setState({
+      patronymic: e.target.value
+    });
+  }
+
+  onChangeAge(e) {
+    this.setState({
+      age: e.target.value
+    });
+  }
+
+  onChangeGender(e) {
+    this.setState({
+      gender: e.target.value
+    });
+  }
   handleRegister(e) {
     e.preventDefault();
 
@@ -79,11 +148,7 @@ export default class Register extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.register(
-        this.state.username,
-        this.state.password,
-        this.state.password_confirmation
-      ).then(
+      AuthService.register(this.state).then(
         response => {
           this.setState({
             message: response.data.message,
@@ -157,6 +222,59 @@ export default class Register extends Component {
                     value={this.state.password_confirmation}
                     onChange={this.onChangePasswordConfirmation}
                     validations={[required, vpassword]}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">First Name</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="first_name"
+                    value={this.state.first_name}
+                    onChange={this.onChangeFirstName}
+                    validations={[required, vFLP]}
+                  />
+                </div>                <div className="form-group">
+                  <label htmlFor="password">Last Name</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="last_name"
+                    value={this.state.last_name}
+                    onChange={this.onChangeLastName}
+                    validations={[required, vFLP]}
+                  />
+                </div>                <div className="form-group">
+                  <label htmlFor="password">Patronymic</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="patronymic"
+                    value={this.state.patronymic}
+                    onChange={this.onChangePatronymic}
+                    validations={[required, vFLP]}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Age</label>
+                  <Input
+                    type="number"
+                    className="form-control"
+                    name="password_confirmation"
+                    value={this.state.age}
+                    onChange={this.onChangeAge}
+                    validations={[required, vage]}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Gender</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="password_confirmation"
+                    value={this.state.gender}
+                    onChange={this.onChangeGender}
+                    validations={[required, vgender]}
                   />
                 </div>
 
