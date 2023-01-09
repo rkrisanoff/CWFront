@@ -4,10 +4,10 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-// import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../../common/with-router';
 
+import userService from "../../../services/user.service";
 
 const required = value => {
   if (!value) {
@@ -25,7 +25,6 @@ class RecycleBorComponent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeBorCount = this.onChangeBorCount.bind(this);
     this.state = {
-      spaceshipId: props.id,
       borType: props.borType,
       borCount:0,
       loading: false,
@@ -50,31 +49,34 @@ class RecycleBorComponent extends Component {
 
     this.form.validateAll();
 
-    // if (this.checkBtn.context._errors.length === 0) {
-    //   AuthService.login(this.state.username, this.state.password).then(
-    //     () => {
-    //       this.props.router.navigate("/profile");
-    //       window.location.reload();
-    //     },
-    //     error => {
-    //       const resMessage =
-    //         (error.response &&
-    //           error.response.data &&
-    //           error.response.data.message) ||
-    //         error.message ||
-    //         error.toString();
-
-    //       this.setState({
-    //         loading: false,
-    //         message: resMessage
-    //       });
-    //     }
-    //   );
-    // } else {
-      this.setState({
-        loading: false
-      });
-    // }
+    if (this.checkBtn.context._errors.length === 0) {
+        userService.post(`/spaceships/${this.props.id}/update`,
+        {
+          [this.props.borType]:this.state.borCount,
+        })
+        .then(
+          () => {
+            this.props.handleClose()
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+  
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
+        );
+      } else {
+        this.setState({
+          loading: false
+        });
+      }
   }
 
   render() {

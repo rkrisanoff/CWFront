@@ -116,7 +116,7 @@ class BoardRobot extends Component {
                     <table class="table">
                         <thead>
                             <tr>
-                                {["id", "", "asteroid", "", "brain", "", "body", "", "eyes", "", "hit_points", "", "", ""].map(value => <th scope="col">{value}</th>)}
+                                {["id", "", "asteroid", "", "brain", "", "body", "", "eyes", "","", "hit_points", "", "", ""].map(value => <th scope="col">{value}</th>)}
                             </tr>
                         </thead>
                         <tbody>
@@ -180,6 +180,12 @@ class BoardRobot extends Component {
                                         <td>
 
                                             <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeEye")}>
+                                                <i class="bi bi-eye">
+                                                </i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                        <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "explore")}>
                                                 <i class="bi bi-eye">
                                                 </i>
                                             </button>
