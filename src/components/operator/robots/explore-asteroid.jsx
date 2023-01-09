@@ -1,23 +1,10 @@
 import React, { Component } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-// import AuthService from "../../services/auth.service";
-
 // import { withRouter } from '../common/with-router';
 import userService from "../../../services/user.service";
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
 
 class ExploreAsteroidComponent extends Component {
   constructor(props) {
@@ -77,7 +64,7 @@ class ExploreAsteroidComponent extends Component {
           <Modal.Title>Exploring</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Explore new asteroid?
+          Explore new asteroid by robot {this.props.robot_id}?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.props.handleClose}>
