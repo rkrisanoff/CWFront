@@ -21,7 +21,7 @@ import BoardBrain from "./components/operator/board-brains";
 import BoardBody from "./components/operator/board-bodies";
 import BoardAsteroid from "./components/operator/board-asteroids";
 import BoardSpaceship from "./components/manager/board-spaceships";
-
+import BoardMicroreactors from "./components/manager/board-microreactors";
 
 
 
@@ -119,10 +119,15 @@ class App extends Component {
                 </Link>
               </li>
             </>)}
-            {currentUser && this.state.showManagerBoard && (<>
+            {currentUser && this.state.showOperatorBoard && (<>
               <li className="nav-item">
                 <Link to={"/manager/spaceship"} className="nav-link">
                   spaceship
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/manager/microreactor"} className="nav-link">
+                  microreactor
                 </Link>
               </li>
             </>)}
@@ -176,11 +181,12 @@ class App extends Component {
             <Route path="/operator/eyes" element={<BoardEyes />} />
             <Route path="/operator/brains" element={<BoardBrain />} />
             <Route path="/manager/spaceship" element={<BoardSpaceship />} />
+            <Route path="/manager/microreactor" element={<BoardMicroreactors />} />
             {/* <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
             <Route path="/manager/tasks" element={<BoardRobotOperator />} />
             <Route path="/manager/bodies" element={<BoardRobotOperator />} />
             <Route path="/manager/eyes" element={<BoardRobotOperator />} />
-            <Route path="/manager/brains" element={<BoardRobotOperator />} /> */}
+             */}
 
 
           </Routes>

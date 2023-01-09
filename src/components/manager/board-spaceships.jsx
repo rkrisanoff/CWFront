@@ -10,7 +10,7 @@ class BoardSpaceShip extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
-        this.handleUpdateRobot = this.handleUpdateSpaceship.bind(this);
+        this.handleUpdateSpaceship = this.handleUpdateSpaceship.bind(this);
         this.state = {
             robots: [
                 {
