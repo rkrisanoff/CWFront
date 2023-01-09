@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import { DropdownButton } from "react-bootstrap";
 import AuthService from "../services/auth.service";
 
 const required = value => {
@@ -56,10 +56,20 @@ const vFLP = value => {
 }
 
 const vgender = value => {
-  if ((value != "male") && (value != "female")) {
+  if ((value !== "male") && (value !== "female")) {
     return (
       <div className="alert alert-danger" role="alert">
         There are only two genders
+      </div>
+    );
+  }
+}
+
+const vrole = value => {
+  if ((value !== 'operator') && (value !== 'manager')) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        role must be 'operator' or 'manager' `(sorry, a will add radio when i get a fine internet-connection)`
       </div>
     );
   }
@@ -69,6 +79,7 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
+    this.onChangeRole = this.onChangeRole.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangePasswordConfirmation = this.onChangePasswordConfirmation.bind(this);
@@ -80,6 +91,7 @@ export default class Register extends Component {
 
 
     this.state = {
+      role: "",
       username: "",
       password: "",
       password_confirmation: "",
@@ -137,6 +149,11 @@ export default class Register extends Component {
       gender: e.target.value
     });
   }
+  onChangeRole(e) {
+    this.setState({
+      role: e.target.value
+    })
+  }
   handleRegister(e) {
     e.preventDefault();
 
@@ -190,6 +207,18 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
+                <div className="form-group">
+                  <label htmlFor="username">Role</label>
+                  <DropdownButton name="role" value={this.state.role} />
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="role"
+                    value={this.state.role}
+                    onChange={this.onChangeRole}
+                    validations={[required, vrole]}
+                  />
+                </div>
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
                   <Input

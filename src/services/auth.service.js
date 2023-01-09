@@ -25,7 +25,7 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register({ username,
+  register({role,username,
     password,
     password_confirmation,
     first_name,
@@ -42,7 +42,8 @@ class AuthService {
       last_name,
       patronymic,
       age,
-      gender
+      gender,
+      role
     });
   }
 
@@ -53,6 +54,7 @@ class AuthService {
       const decodedJwtJsonData = window.atob(jwtData)
       const decodedJwtData = JSON.parse(decodedJwtJsonData)
       user['roles'] = decodedJwtData.roles;
+      user['id'] = decodedJwtData.uid;
     }
 
     return user;

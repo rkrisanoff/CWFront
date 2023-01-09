@@ -13,6 +13,8 @@ class BoardTasks extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleUpdateTask = this.handleUpdateTask.bind(this);
         this.handleCreateTask = this.handleCreateTask.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.currentUser = AuthService.getCurrentUser();
 
 
         this.state = {
@@ -75,7 +77,7 @@ class BoardTasks extends Component {
         return (
             <div className="col-md-12">
                 <AcceptTaskComponent id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
-                <CreateTaskComponent creator_id={this.state} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
+                <CreateTaskComponent creator_id={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
                 <h1> Tasks </h1>
                 <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreateTask()}>
                     <i class="bi bi-journal-plus"></i>

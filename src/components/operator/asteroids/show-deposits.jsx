@@ -13,14 +13,13 @@ class ShowDepositsComponent extends Component {
         super(props);
         this.state = {
             deposits: [],
-            // loading: false,
             message: ""
         };
     }
 
 
     componentDidMount() {
-        userService.get(`asteroid/${this.props.id}/deposits`)
+        userService.get(`asteroids/${this.props.id}/deposits`)
             .then(
                 ({ data }) => {
                     this.setState({

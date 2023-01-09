@@ -53,8 +53,7 @@ class BoardRobot extends Component {
             },
             actualRobotId: null
         };
-        const currentUser = AuthService.getCurrentUser();
-        console.log(currentUser);
+        this.currentUser = AuthService.getCurrentUser();
 
     }
     handleUpdateRobot(id, modal) {
@@ -104,7 +103,7 @@ class BoardRobot extends Component {
                 <DestroyRobotComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("destroy")} isActive={this.state.modals.destroy} />
                 <ExtractBorumComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("extract")} isActive={this.state.modals.extract} />
                 <RepairRobotComponent id={this.state.actualRobotId} handleClose={() => this.handleClose("repair")} isActive={this.state.modals.repair} />
-                <CreateRobotComponent operator_post_id={this.props.actualRobotId} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
+                <CreateRobotComponent operator_post_id={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
                 <ExploreAsteroidComponent robot_id={this.state.actualRobotId} handleClose={() => this.handleClose("explore")} isActive={this.state.modals.explore} />
 
                 <h1> Robots </h1>

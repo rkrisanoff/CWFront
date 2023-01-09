@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import authService from "../../../services/auth.service";
 import { withRouter } from '../../../common/with-router';
 import userService from "../../../services/user.service";
 
@@ -32,6 +32,7 @@ class CreateRobotComponent extends Component {
             body_series: null,
             brain_series: null,
             eye_series: null,
+            operator_id:null,
             loading: false,
             message: ""
         };
@@ -60,7 +61,15 @@ class CreateRobotComponent extends Component {
         });
     }
 
-
+    componentDidMount() {
+        const user = authService.getCurrentUser();
+        if (user && user.id) {
+          this.setState({
+            operator_id: user.id,
+    
+          });
+        }
+      }
     handleSubmit(e) {
         e.preventDefault();
 
@@ -78,8 +87,8 @@ class CreateRobotComponent extends Component {
                     body_series: this.state.body_series,
                     brain_series: this.state.brain_series,
                     eye_series: this.state.eye_series,
-                    operator_post_id: 13,
-                    hit_points:1
+                    operator_post_id: this.state.operator_id,
+                    operator_id:this.state.operator_id
                 })
                 .then(
                     () => {

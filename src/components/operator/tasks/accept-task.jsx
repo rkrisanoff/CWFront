@@ -32,34 +32,8 @@ class AcceptTaskComponent extends Component {
       message: "",
       loading: true
     });
-
-    // if (this.checkBtn.context._errors.length === 0) {
-    //   AuthService.login(this.state.username, this.state.password).then(
-    //     () => {
-    //       this.props.router.navigate("/profile");
-    //       window.location.reload();
-    //     },
-    //     error => {
-    //       const resMessage =
-    //         (error.response &&
-    //           error.response.data &&
-    //           error.response.data.message) ||
-    //         error.message ||
-    //         error.toString();
-
-    //       this.setState({
-    //         loading: false,
-    //         message: resMessage
-    //       });
-    //     }
-    //   );
-    // } else {
-    //   this.setState({
-    //     loading: false
-    //   });
-    // }
     this.setState({
-      message: `fuck you ${Math.random(100)}`,
+      message: ``,
       loading: false
     });
   }

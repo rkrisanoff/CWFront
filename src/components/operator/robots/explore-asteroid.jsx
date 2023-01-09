@@ -24,9 +24,7 @@ class ExploreAsteroidComponent extends Component {
       loading: true
     });
 
-    this.form.validateAll();
 
-    if (this.checkBtn.context._errors.length === 0) {
       userService.post(`asteroids/explore`,
       {
         robot_id:this.props.robot_id,
@@ -49,11 +47,6 @@ class ExploreAsteroidComponent extends Component {
           });
         }
       );
-    } else {
-      this.setState({
-        loading: false
-      });
-    }
   }
 
   render() {
