@@ -115,7 +115,7 @@ class BoardEmployee extends Component {
                                     <tr>
                                         <th scope="row">{id}</th>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdateEmployee({id}, "destroy")}>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdateEmployee({ id }, "delete")}>
                                                 <i class="bi bi-x-octagon">
                                                 </i>
                                             </button>
@@ -132,8 +132,7 @@ class BoardEmployee extends Component {
                                                     patronymic,
                                                     gender, age
                                                 }, "update")}>
-                                                <i class="bi bi-x-octagon">
-                                                </i>
+                                                <i class="bi bi-arrow-up-circle"></i>
                                             </button>
                                         </td>
                                         <td>{username}</td>

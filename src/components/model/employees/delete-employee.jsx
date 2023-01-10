@@ -28,7 +28,7 @@ class DeleteEmployee extends Component {
         });
 
 
-        userService.get(`employee/${this.props.employee.id}/delete`)
+        userService.get(`employees/${this.props.employee.id}/delete`)
             .then(
                 () => {
                     this.props.handleClose()
@@ -54,7 +54,7 @@ class DeleteEmployee extends Component {
 
             <Modal show={this.props.isActive} onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Destroying</Modal.Title>
+                    <Modal.Title>Deleting</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Are you sure that you want to delete this employee?
@@ -64,7 +64,7 @@ class DeleteEmployee extends Component {
                         Cancel
                     </Button>
                     <Button variant="danger" onClick={this.handleSubmit} disabled={this.state.loading}>
-                        Destroy
+                        Delete
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -70,7 +70,7 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+    // this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangePatronymic = this.onChangePatronymic.bind(this);
@@ -84,11 +84,11 @@ export default class Register extends Component {
     };
   }
 
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    });
-  }
+  // onChangeUsername(e) {
+  //   this.setState({
+  //     username: e.target.value
+  //   });
+  // }
 
   onChangeFirstName(e) {
     this.setState({
@@ -177,7 +177,7 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="username">Username</label>
                   <Input
                     type="text"
@@ -187,7 +187,7 @@ export default class Register extends Component {
                     onChange={this.onChangeUsername}
                     validations={[required, vusername]}
                   />
-                </div>
+                </div> */}
                 <div className="form-group">
                   <label htmlFor="first_name">First Name</label>
                   <Input
@@ -274,8 +274,8 @@ export default class Register extends Component {
           <Button variant="secondary" onClick={this.props.handleClose}>
               Cancel
           </Button>
-          <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
-              Move
+          <Button variant="primary" onClick={this.handleUpdate} disabled={this.state.loading}>
+              Update
           </Button>
       </Modal.Footer>
   </Modal>
