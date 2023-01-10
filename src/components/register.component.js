@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { DropdownButton } from "react-bootstrap";
 import AuthService from "../services/auth.service";
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
 const required = value => {
   if (!value) {
@@ -91,7 +92,7 @@ export default class Register extends Component {
 
 
     this.state = {
-      role: "",
+      role: "operator",
       username: "",
       password: "",
       password_confirmation: "",
@@ -149,11 +150,12 @@ export default class Register extends Component {
       gender: e.target.value
     });
   }
-  onChangeRole(e) {
+  onChangeRole(role) {
     this.setState({
-      role: e.target.value
+      role: role
     })
   }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -208,16 +210,15 @@ export default class Register extends Component {
             {!this.state.successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username">Role</label>
-                  <DropdownButton name="role" value={this.state.role} />
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="role"
-                    value={this.state.role}
-                    onChange={this.onChangeRole}
-                    validations={[required, vrole]}
-                  />
+                  <label htmlFor="role">Role</label>
+                  <ToggleButtonGroup name="role" type="radio" value={this.state.role} onChange={this.onChangeRole} defaultValue={"operator"}>
+                    <ToggleButton id="tbg-btn-1" value={"operator"} variant={'outline-success'}>
+                    operator
+                    </ToggleButton>
+                    <ToggleButton id="tbg-btn-2" value={"manager"} variant={'outline-danger'}>
+                    manager
+                    </ToggleButton>
+                  </ToggleButtonGroup>
                 </div>
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
@@ -243,7 +244,7 @@ export default class Register extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Confirm Password</label>
+                  <label htmlFor="password_confirmation">Confirm Password</label>
                   <Input
                     type="password"
                     className="form-control"
@@ -254,7 +255,7 @@ export default class Register extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">First Name</label>
+                  <label htmlFor="first_name">First Name</label>
                   <Input
                     type="text"
                     className="form-control"
@@ -264,7 +265,7 @@ export default class Register extends Component {
                     validations={[required, vFLP]}
                   />
                 </div>                <div className="form-group">
-                  <label htmlFor="password">Last Name</label>
+                  <label htmlFor="last_name">Last Name</label>
                   <Input
                     type="text"
                     className="form-control"
@@ -274,7 +275,7 @@ export default class Register extends Component {
                     validations={[required, vFLP]}
                   />
                 </div>                <div className="form-group">
-                  <label htmlFor="password">Patronymic</label>
+                  <label htmlFor="patronymic">Patronymic</label>
                   <Input
                     type="text"
                     className="form-control"
@@ -285,22 +286,22 @@ export default class Register extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Age</label>
+                  <label htmlFor="age">Age</label>
                   <Input
                     type="number"
                     className="form-control"
-                    name="password_confirmation"
+                    name="age"
                     value={this.state.age}
                     onChange={this.onChangeAge}
                     validations={[required, vage]}
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Gender</label>
+                  <label htmlFor="gender">Gender</label>
                   <Input
                     type="text"
                     className="form-control"
-                    name="password_confirmation"
+                    name="gender"
                     value={this.state.gender}
                     onChange={this.onChangeGender}
                     validations={[required, vgender]}
