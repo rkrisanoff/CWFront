@@ -166,7 +166,7 @@ export default class Register extends Component {
     return (
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
       <Modal.Header closeButton>
-          <Modal.Title>Move Robot into Asteroid</Modal.Title>
+          <Modal.Title>Update Employee</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <Form

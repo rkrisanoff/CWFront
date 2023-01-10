@@ -123,7 +123,7 @@ class BoardEmployee extends Component {
                                         <td>
                                             <button
                                                 type="button"
-                                                class="btn btn-outline-danger btn-sm"
+                                                class="btn btn-outline-primary btn-sm"
                                                 onClick={() => this.handleUpdateEmployee({
                                                     id,
                                                     username,
