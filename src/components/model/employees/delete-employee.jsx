@@ -1,25 +1,14 @@
 import React, { Component } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import authHeader from '../../../services/auth-header';
+
 import userService from "../../../services/user.service";
 
 import { withRouter } from '../../../common/with-router';
 
-const required = value => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
 
-class RepairRobotComponent extends Component {
+class DeleteEmployee extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +28,7 @@ class RepairRobotComponent extends Component {
         });
 
 
-        userService.get(`robots/${this.props.id}/repair`)
+        userService.get(`employee/${this.props.employee.id}/delete`)
             .then(
                 () => {
                     this.props.handleClose()
@@ -60,31 +49,26 @@ class RepairRobotComponent extends Component {
             );
     }
 
-
     render() {
         return (
 
             <Modal show={this.props.isActive} onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Repairing</Modal.Title>
+                    <Modal.Title>Destroying</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure that you want to repair the robot with id = {this.props.id}?
-
+                    Are you sure that you want to delete this employee?
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
-                        Repair
+                    <Button variant="danger" onClick={this.handleSubmit} disabled={this.state.loading}>
+                        Destroy
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
         );
     }
 }
-export default withRouter(RepairRobotComponent);
+export default withRouter(DeleteEmployee);

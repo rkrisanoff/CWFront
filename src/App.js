@@ -23,7 +23,8 @@ import BoardAsteroids from "./components/model/board-asteroids";
 import BoardSpaceships from "./components/model/board-spaceships";
 import BoardMicroreactors from "./components/model/board-microreactors";
 import BoardDepartments from "./components/model/board-departments";
-
+import BoardPosts from "./components/model/board-posts";
+import BoardEmployees from "./components/model/board-employees";
 
 class App extends Component {
   constructor(props) {
@@ -137,6 +138,16 @@ class App extends Component {
                   departments
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to={"/manager/posts"} className="nav-link">
+                posts
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/manager/employees"} className="nav-link">
+                employees
+                </Link>
+              </li>
               
             </>)}
 
@@ -191,6 +202,10 @@ class App extends Component {
             <Route path="/manager/spaceships" element={<BoardSpaceships />} />
             <Route path="/manager/microreactors" element={<BoardMicroreactors />} />
             <Route path="/manager/departments" element={<BoardDepartments />} />
+            <Route path="/manager/posts" element={<BoardPosts/>} />
+            <Route path="/manager/employees" element={<BoardEmployees/>} />
+
+            
 
             {/* <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
             <Route path="/manager/tasks" element={<BoardRobotOperator />} />

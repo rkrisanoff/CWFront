@@ -16,19 +16,8 @@ class BoardTasks extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.currentUser = AuthService.getCurrentUser();
 
-
         this.state = {
-            tasks: [
-                {
-                    id: 1, description: 2, cost: 3, creator_id: 4
-                },
-                {
-                    id: 2, description: 2, cost: 3, creator_id: 4
-                },
-                {
-                    id: 3, description: "fuck you", cost: 3, creator_id: 4
-                }
-            ],
+            tasks: [],
             modals: {
                 accept: false,
                 create: false
@@ -72,11 +61,13 @@ class BoardTasks extends Component {
                     console.log(resMessage);
                 }
             );
+            
+
     }
     render() {
         return (
             <div className="col-md-12">
-                <AcceptTaskComponent id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
+                <AcceptTaskComponent executor_id={this.currentUser.id} id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
                 <CreateTaskComponent creator_id={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
                 <h1> Tasks </h1>
                 <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreateTask()}>
@@ -86,24 +77,32 @@ class BoardTasks extends Component {
                     <table class="table">
                         <thead>
                             <tr>
-                                {["id", "cost", "", "description", "creator_id"].map(value => <th scope="col">{value}</th>)}
+                                <th scope="col">id</th>
+                                <th scope="col">cost</th>
+                                <th scope="col"></th>
+                                <th scope="col">description</th>
+                                <th scope="col">state</th>
+                                <th scope="col">creator_id</th>
+                                <th scope="col">executor_id</th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.tasks.map(
-                                ({ id, description, cost, creator_id }) => (
+                                ({ id, description, cost,state,creator_id,executor_id }) => (
                                     <tr>
                                         <th scope="row">{id} </th>
 
                                         <td>{cost}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
+                                            {!executor_id && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
-                                            </button>
+                                            </button>}
+                                            
                                         </td>
-
+                                        <td>{state}</td>
                                         <td>{description}</td>
                                         <td>{creator_id}</td>
+                                        <td>{executor_id}</td>
                                     </tr>
                                 )
                             )}

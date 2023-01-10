@@ -2,28 +2,21 @@ import React, { Component } from "react";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-// import AuthService from "../../services/auth.service";
+import AuthService from "../../../services/auth.service";
 
 import { withRouter } from '../../../common/with-router';
+import userService from "../../../services/user.service";
 
 
 class AcceptTaskComponent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-     this.state = {
-      taskId: props.id,
+    this.state = {
       loading: false,
       message: ""
     };
   }
-
-  onChangeAsteroid(e) {
-    this.setState({
-      asteroid: e.target.value
-    });
-  }
-
 
   handleSubmit(e) {
     e.preventDefault();
@@ -32,10 +25,30 @@ class AcceptTaskComponent extends Component {
       message: "",
       loading: true
     });
-    this.setState({
-      message: ``,
-      loading: false
-    });
+
+    userService.post(`tasks/${this.props.id}/update`,
+      {
+        executor_id: this.props.executor_id
+      })
+      .then(
+        () => {
+          this.props.handleClose()
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
+        }
+      );
+
   }
   Accepting
   render() {

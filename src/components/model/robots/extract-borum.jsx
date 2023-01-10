@@ -5,6 +5,7 @@ import CheckButton from "react-validation/build/button";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 // import AuthService from "../../services/auth.service";
+import userService from "../../../services/user.service";
 
 // import { withRouter } from '../common/with-router';
 
@@ -22,13 +23,19 @@ class ExtractBorumComponent extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChangeDeposit = this.onChangeDeposit.bind(this);
+
         this.state = {
-            robotId: props.id,
+            deposit_id: null,
             loading: false,
             message: ""
         };
     }
-
+    onChangeDeposit(e) {
+        this.setState({
+            deposit_id: e.target.value
+        });
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -39,32 +46,36 @@ class ExtractBorumComponent extends Component {
         });
 
         this.form.validateAll();
+        console.log(1);
 
-        // if (this.checkBtn.context._errors.length === 0) {
-        //   AuthService.login(this.state.username, this.state.password).then(
-        //     () => {
-        //       this.props.router.navigate("/profile");
-        //       window.location.reload();
-        //     },
-        //     error => {
-        //       const resMessage =
-        //         (error.response &&
-        //           error.response.data &&
-        //           error.response.data.message) ||
-        //         error.message ||
-        //         error.toString();
+        if (this.checkBtn.context._errors.length === 0) {
+            userService.post(`robots/${this.props.id}/extract`,
+                {
+                    deposit_id: this.state.deposit_id,
+                })
+                .then(
+                    () => {
+                        this.props.handleClose()
+                    },
+                    error => {
+                        const resMessage =
+                            (error.response &&
+                                error.response.data &&
+                                error.response.data.message) ||
+                            error.message ||
+                            error.toString();
 
-        //       this.setState({
-        //         loading: false,
-        //         message: resMessage
-        //       });
-        //     }
-        //   );
-        // } else {
-          this.setState({
-            loading: false
-          });
-        // }
+                        this.setState({
+                            loading: false,
+                            message: resMessage
+                        });
+                    }
+                );
+        } else {
+            this.setState({
+                loading: false
+            });
+        }
     }
 
     render() {
@@ -75,14 +86,47 @@ class ExtractBorumComponent extends Component {
                     <Modal.Title>Extracting Bor</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                Are you sure that you want to robot to extract bor?
+                    <Form
+                        onSubmit={this.props.handleSubmit}
+                        ref={c => {
+                            this.form = c;
+                        }}
+                    >
+                        <br />
+                        Specify deposit id
+                        <div className="form-group">
+                            <label htmlFor="deposit_id">Deposit</label>
+                            <Input
+                                type="number"
+                                className="form-control"
+                                name={"deposit_id"}
+                                value={this.state.deposit_id}
+                                onChange={this.onChangeDeposit}
+                                validations={[required]}
+                            />
+                        </div>
+
+                        {this.state.message && (
+                            <div className="form-group">
+                                <div className="alert alert-danger" role="alert">
+                                    {this.state.message}
+                                </div>
+                            </div>
+                        )}
+                        <CheckButton
+                            style={{ display: "none" }}
+                            ref={c => {
+                                this.checkBtn = c;
+                            }}
+                        />
+                    </Form>
 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="warning" onClick={this.props.handleSubmit} disabled={this.state.loading}>
+                    <Button variant="warning" onClick={this.handleSubmit} disabled={this.state.loading}>
                         Extract
                     </Button>
                 </Modal.Footer>

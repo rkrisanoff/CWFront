@@ -15,7 +15,7 @@ class BoardBody extends Component {
         };
     }
     componentDidMount() {
-        userService.get("bodies/all")
+        userService.get("body/all")
             .then(
                 ({ data }) => {
                     this.setState({
