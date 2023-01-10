@@ -15,7 +15,7 @@ class BoardMicroreactor extends Component {
         };
     }
     componentDidMount() {
-        userService.get("microreactor/all")
+        userService.get("microreactors/all")
             .then(
                 ({ data }) => {
                     this.setState({
@@ -40,21 +40,21 @@ class BoardMicroreactor extends Component {
                         <thead>
                             <tr>
                                 {["id", "name", "cost", "b2_h6_consumption_rate",
-                                    "b5_h12_consumprion_rate", "b10_h14_consumtion_rate",
+                                    "b5_h12_consumption_rate", "b10_h14_consumption_rate",
                                     "b12_h12_consumption_rate"].map(value => <th scope="col">{value}</th>)}
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.microreactors.map(
-                                ({ id, name, cost, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumtion_rate, b12_h12_consumption_rate }) => (
+                                ({ id, name, cost, b2_h6_consumption_rate, b5_h12_consumption_rate, b10_h14_consumption_rate, b12_h12_consumption_rate }) => (
 
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
                                         <td>{name}</td>
                                         <td>{cost}</td>
                                         <td>{b2_h6_consumption_rate}</td>
-                                        <td>{b5_h12_consumprion_rate}</td>
-                                        <td>{b10_h14_consumtion_rate}</td>
+                                        <td>{b5_h12_consumption_rate}</td>
+                                        <td>{b10_h14_consumption_rate}</td>
                                         <td>{b12_h12_consumption_rate}</td>
                                     </tr>
                                 )

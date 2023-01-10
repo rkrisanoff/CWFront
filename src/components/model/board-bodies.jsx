@@ -39,14 +39,14 @@ class BoardBody extends Component {
                     <table class="table">
                         <thead>
                             <tr>
-                                {["release_series", "name", "cost", "max_hit_points"].map(value => <th scope="col">{value}</th>)}
+                                {["release series", "name", "cost", "max_hit_points"].map(value => <th scope="col">{value}</th>)}
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.bodies.map(
-                                ({ release_series, name, cost, max_hit_points }) => (
+                                ({ releaseSeries, name, cost, max_hit_points }) => (
                                     <tr>
-                                        <th scope="row"key={release_series}>{release_series}
+                                        <th scope="row"key={releaseSeries}>{releaseSeries}
 
                                         </th>
 

@@ -28,11 +28,11 @@ class BoardSpaceShip extends Component {
             borType: null,
         };
     }
-    handleUpdateSpaceship(id,borCount, modal) {
+    handleUpdateSpaceship(id, borCount, modal) {
         this.setState({
             activeSpaceshipId: id,
             borType: modal,
-            borCount:borCount,
+            borCount: borCount,
             modals: { ...this.state.modals, [modal]: true }
         })
     }
@@ -87,7 +87,13 @@ class BoardSpaceShip extends Component {
     render() {
         return (
             <div className="col-md-12">
-                <RecycleBorComponent id={this.state.activeSpaceshipId} borType={this.state.borType} borCount = {this.state.borCount} handleClose={() => this.handleClose(this.state.borType)} isActive={this.state.modals[this.state.borType]} />
+                <RecycleBorComponent
+                    id={this.state.activeSpaceshipId}
+                    borType={this.state.borType}
+                    borCount={this.state.borCount}
+                    handleClose={() => this.handleClose(this.state.borType)}
+                    isActive={this.state.modals[this.state.borType]}
+                />
                 <ShowMicroreactorsComponent
                     id={this.state.activeSpaceshipId}
                     handleClose={() => this.handleClose("show_microreactors")}
@@ -123,25 +129,25 @@ class BoardSpaceShip extends Component {
                                         </td>
                                         <td>{b2_h6_quantity}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id,b2_h6_quantity, "b2_h6_quantity")}>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b2_h6_quantity, "b2_h6_quantity")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>
                                         <td>{b5_h12_quantity}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id,b5_h12_quantity, "b5_h12_quantity")}>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b5_h12_quantity, "b5_h12_quantity")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>
                                         <td>{b10_h14_quantity}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b10_h14_quantity,"b10_h14_quantity")}>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b10_h14_quantity, "b10_h14_quantity")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>
                                         <td>{b12_h12_quantity}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b12_h12_quantity,"b12_h12_quantity")}>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b12_h12_quantity, "b12_h12_quantity")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>

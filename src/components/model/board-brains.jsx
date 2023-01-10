@@ -44,9 +44,9 @@ class BoardBrain extends Component {
                         </thead>
                         <tbody>
                             {this.state.brains.map(
-                                ({ release_series, name, cost, speed }) => (
+                                ({ releaseSeries, name, cost, speed }) => (
                                     <tr>
-                                        <th scope="row" key={release_series}>{release_series}
+                                        <th scope="row" key={releaseSeries}>{releaseSeries}
 
                                         </th>
 

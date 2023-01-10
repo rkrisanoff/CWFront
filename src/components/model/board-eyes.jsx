@@ -44,9 +44,9 @@ class BoardEyes extends Component {
                         </thead>
                         <tbody>
                             {this.state.eyes.map(
-                                ({ release_series, name, cost, distance }) => (
+                                ({ releaseSeries, name, cost, distance }) => (
                                     <tr>
-                                        <th scope="row" key={release_series}>{release_series}
+                                        <th scope="row" key={releaseSeries}>{releaseSeries}
 
                                         </th>
 
