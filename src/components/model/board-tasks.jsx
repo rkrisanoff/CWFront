@@ -97,7 +97,7 @@ class BoardTasks extends Component {
 
                                         <td>{cost}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
+                                            <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>

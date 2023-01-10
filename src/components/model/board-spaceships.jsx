@@ -4,6 +4,7 @@ import AuthService from "../../services/auth.service";
 
 import { withRouter } from '../../common/with-router';
 import RecycleBorComponent from "./spaceships/recycle-bor";
+import ShowMicroreactorsComponent from "./spaceships/show-microreactors";
 
 
 class BoardSpaceShip extends Component {
@@ -11,8 +12,9 @@ class BoardSpaceShip extends Component {
         super(props);
         this.handleClose = this.handleClose.bind(this);
         this.handleUpdateSpaceship = this.handleUpdateSpaceship.bind(this);
+        this.handleShowMicroreactors = this.handleShowMicroreactors.bind(this);
         this.state = {
-            robots: [
+            spaceships: [
                 {
                     id: 1,
                     b2_h6_quantity: 2,
@@ -45,18 +47,26 @@ class BoardSpaceShip extends Component {
                 b2_h6_quantity: false,
                 b5_h12_quantity: false,
                 b10_h14_quantity: false,
-                b12_h12_quantity: false
+                b12_h12_quantity: false,
+                show_microreactors: false
             },
             activeSpaceshipId: null,
-            borType:null,
+            borType: null,
         };
     }
     handleUpdateSpaceship(id, modal) {
         this.setState({
             activeSpaceshipId: id,
-            borType:modal,
+            borType: modal,
             modals: { ...this.state.modals, [modal]: true }
         })
+    }
+
+    handleShowMicroreactors(id) {
+        this.setState({
+            activeSpaceshipId: id,
+            modals: { ...this.state.modals, show_microreactors: true }
+        });
     }
 
     handleClose(modal) {
@@ -70,20 +80,39 @@ class BoardSpaceShip extends Component {
         return (
             <div className="col-md-12">
                 <RecycleBorComponent id={this.state.activeSpaceshipId} borType={this.state.borType} handleClose={() => this.handleClose(this.state.borType)} isActive={this.state.modals[this.state.borType]} />
+                <ShowMicroreactorsComponent
+                    id={this.state.activeSpaceshipId}
+                    handleClose={() => this.handleClose(this.state.modals.show_microreactors)}
+                    isActive={this.state.modals[this.state.modals.show_microreactors]}
+                />
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
-                                {["id", "b2_h6_quantity", "", "b5_h12_quantity", "", "b10_h14_quantity", "", "b12_h12_quantity", "", "department_id", "income"].map(value => <th scope="col">{value}</th>)}
+                                <th scope="col">id</th>
+                                <th scope="col"></th>
+                                <th scope="col">department_id</th>
+                                <th scope="col">income</th>
+                                <th scope="col">b2_h6_quantity</th>
+                                <th scope="col"></th>
+                                <th scope="col">b5_h12_quantity</th>
+                                <th scope="col"></th>
+                                <th scope="col">b10_h14_quantity</th>
+                                <th scope="col"></th>
+                                <th scope="col">b12_h12_quantity</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.robots.map(
+                            {this.state.spaceships.map(
                                 ({ id, b2_h6_quantity, b5_h12_quantity, b10_h14_quantity, b12_h12_quantity, department_id, income }) => (
                                     <tr>
-                                        <th scope="row">{id}
-
-                                        </th>
+                                        <th scope="row">{id}</th>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, "b2_h6_quantity")}>
+                                                <i class="bi bi-battery-charging"></i>
+                                            </button>
+                                        </td>
                                         <td>{b2_h6_quantity}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, "b2_h6_quantity")}>

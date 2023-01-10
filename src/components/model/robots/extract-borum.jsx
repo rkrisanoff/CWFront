@@ -82,7 +82,7 @@ class ExtractBorumComponent extends Component {
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={this.props.handleSubmit} disabled={this.state.loading}>
+                    <Button variant="warning" onClick={this.props.handleSubmit} disabled={this.state.loading}>
                         Extract
                     </Button>
                 </Modal.Footer>

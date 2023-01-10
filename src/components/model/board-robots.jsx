@@ -132,7 +132,7 @@ class BoardRobot extends Component {
                                         </th>
                                         <td>
 
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "destroy")}>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdateRobot(id, "destroy")}>
                                                 <i class="bi bi-x-octagon">
                                                 </i>
                                             </button>
@@ -155,7 +155,7 @@ class BoardRobot extends Component {
                                         </td>
                                         <td>
 
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBrain")}>
+                                            <button type="button" class="btn btn-outline-dark btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBrain")}>
                                                 <i class="bi bi-android">
 
                                                 </i>
@@ -167,7 +167,7 @@ class BoardRobot extends Component {
                                         </td>
                                         <td>
 
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBody")}>
+                                            <button type="button" class="btn btn-outline-dark btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeBody")}>
                                                 <i class="bi bi-android2">
                                                 </i>
                                             </button>
@@ -178,7 +178,7 @@ class BoardRobot extends Component {
                                         </td>
                                         <td>
 
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeEye")}>
+                                            <button type="button" class="btn btn-outline-dark btn-sm" onClick={() => this.handleUpdateRobot(id, "upgradeEye")}>
                                                 <i class="bi bi-eye">
                                                 </i>
                                             </button>
@@ -201,7 +201,7 @@ class BoardRobot extends Component {
                                         </td>
                                         <td>
 
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateRobot(id, "extract")}>
+                                            <button type="button" class="btn btn-outline-warning btn-sm" onClick={() => this.handleUpdateRobot(id, "extract")}>
                                                 <i class="bi bi-minecart-loaded">
                                                 </i>
                                             </button>

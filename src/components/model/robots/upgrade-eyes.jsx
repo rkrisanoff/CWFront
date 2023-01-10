@@ -98,7 +98,7 @@ class UpgradeEyesComponent extends Component {
 
             Specify eyes id
             <div className="form-group">
-              <label htmlFor="asteroid">Asteroid</label>
+              <label htmlFor="asteroid">Eye-sensors</label>
               <Input
                 type="text"
                 className="form-control"
@@ -128,7 +128,7 @@ class UpgradeEyesComponent extends Component {
           <Button variant="secondary" onClick={this.props.handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
+          <Button variant="dark" onClick={this.handleSubmit} disabled={this.state.loading}>
             Replace
           </Button>
         </Modal.Footer>

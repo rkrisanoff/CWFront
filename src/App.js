@@ -14,15 +14,15 @@ import BoardAdmin from "./components/board-admin.component";
 
 import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
-import BoardRobot from "./components/operator/board-robots";
-import BoardTasks from "./components/operator/board-tasks";
-import BoardEyes from "./components/operator/board-eyes";
-import BoardBrain from "./components/operator/board-brains";
-import BoardBody from "./components/operator/board-bodies";
-import BoardAsteroid from "./components/operator/board-asteroids";
-import BoardSpaceship from "./components/manager/board-spaceships";
-import BoardMicroreactors from "./components/manager/board-microreactors";
-
+import BoardRobots from "./components/model/board-robots";
+import BoardTasks from "./components/model/board-tasks";
+import BoardEyes from "./components/model/board-eyes";
+import BoardBrains from "./components/model/board-brains";
+import BoardBodies from "./components/model/board-bodies";
+import BoardAsteroids from "./components/model/board-asteroids";
+import BoardSpaceships from "./components/model/board-spaceships";
+import BoardMicroreactors from "./components/model/board-microreactors";
+import BoardDepartments from "./components/model/board-departments";
 
 
 class App extends Component {
@@ -121,15 +121,23 @@ class App extends Component {
             </>)}
             {currentUser && this.state.showOperatorBoard && (<>
               <li className="nav-item">
-                <Link to={"/manager/spaceship"} className="nav-link">
+                <Link to={"/manager/spaceships"} className="nav-link">
                   spaceship
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/manager/microreactor"} className="nav-link">
+                <Link to={"/manager/microreactors"} className="nav-link">
                   microreactor
                 </Link>
               </li>
+            </>)}
+            {currentUser && (<>
+              <li className="nav-item">
+                <Link to={"/manager/departments"} className="nav-link">
+                  departments
+                </Link>
+              </li>
+              
             </>)}
 
 
@@ -174,14 +182,16 @@ class App extends Component {
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<BoardUser />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/operator/robots" element={<BoardRobot />} />
-            <Route path="/operator/asteroids" element={<BoardAsteroid />} />
+            <Route path="/operator/robots" element={<BoardRobots />} />
+            <Route path="/operator/asteroids" element={<BoardAsteroids />} />
             <Route path="/operator/tasks" element={<BoardTasks />} />
-            <Route path="/operator/bodies" element={<BoardBody />} />
+            <Route path="/operator/bodies" element={<BoardBodies />} />
             <Route path="/operator/eyes" element={<BoardEyes />} />
-            <Route path="/operator/brains" element={<BoardBrain />} />
-            <Route path="/manager/spaceship" element={<BoardSpaceship />} />
-            <Route path="/manager/microreactor" element={<BoardMicroreactors />} />
+            <Route path="/operator/brains" element={<BoardBrains />} />
+            <Route path="/manager/spaceships" element={<BoardSpaceships />} />
+            <Route path="/manager/microreactors" element={<BoardMicroreactors />} />
+            <Route path="/manager/departments" element={<BoardDepartments />} />
+
             {/* <Route path="/manager/asteroids" element={<BoardRobotOperator />} />
             <Route path="/manager/tasks" element={<BoardRobotOperator />} />
             <Route path="/manager/bodies" element={<BoardRobotOperator />} />

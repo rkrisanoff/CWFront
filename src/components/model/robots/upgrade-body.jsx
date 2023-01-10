@@ -19,22 +19,22 @@ const required = value => {
   }
 };
 
-class UpgradeBrainComponent extends Component {
+class UpgradeBodyComponent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeBrain = this.onChangeBrain.bind(this);
+    this.onChangeBody = this.onChangeBody.bind(this);
     this.state = {
       robotId: props.id,
-      brain: "",
+      body: "",
       loading: false,
       message: ""
     };
   }
 
-  onChangeBrain(e) {
+  onChangeBody(e) {
     this.setState({
-        brain: e.target.value
+        body: e.target.value
     });
   }
 
@@ -52,7 +52,7 @@ class UpgradeBrainComponent extends Component {
     if (this.checkBtn.context._errors.length === 0) {
         userService.post(`robots/${this.props.id}/update`,
         {
-          brain_series:this.state.brain,
+          body_series:this.state.body,
         })
         .then(
           () => {
@@ -84,7 +84,7 @@ class UpgradeBrainComponent extends Component {
 
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Upgrade Brain</Modal.Title>
+          <Modal.Title>Upgrade Body</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -93,18 +93,17 @@ class UpgradeBrainComponent extends Component {
               this.form = c;
             }}
           >
-            Choose brain you want to replace at robot
+            Choose body you want to replace at robot
             <br/>
-
-            Specify brain id
+            Specify body id
             <div className="form-group">
-              <label htmlFor="asteroid">Brain</label>
+              <label htmlFor="asteroid">Body</label>
               <Input
                 type="text"
                 className="form-control"
-                name={"brain"}
-                value={this.state.brain}
-                onChange={this.onChangeBrain}
+                name={"body"}
+                value={this.state.body}
+                onChange={this.onChangeBody}
                 validations={[required]}
               />
             </div>
@@ -128,13 +127,13 @@ class UpgradeBrainComponent extends Component {
           <Button variant="secondary" onClick={this.props.handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
-          Replace
+          <Button variant="dark" onClick={this.handleSubmit} disabled={this.state.loading}>
+            Replace
           </Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
-export default UpgradeBrainComponent;
+export default UpgradeBodyComponent;
 // export default withRouter(Login);

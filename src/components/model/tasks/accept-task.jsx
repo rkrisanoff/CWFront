@@ -52,7 +52,7 @@ class AcceptTaskComponent extends Component {
           <Button variant="secondary" onClick={this.props.handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
+          <Button variant="success" onClick={this.handleSubmit} disabled={this.state.loading}>
             Accept
           </Button>
         </Modal.Footer>

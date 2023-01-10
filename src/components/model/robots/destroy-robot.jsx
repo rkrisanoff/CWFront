@@ -63,7 +63,7 @@ class DestroyRobotComponent extends Component {
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={this.handleSubmit} disabled={this.state.loading}>
+                    <Button variant="danger" onClick={this.handleSubmit} disabled={this.state.loading}>
                         Destroy
                     </Button>
                 </Modal.Footer>
