@@ -30,28 +30,29 @@ const required = value => {
     }
 };
 
-class BoardRobot extends Component {
+class BoardPost extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
-        this.handleUpdatePost = this.handleUpdateRobot.bind(this);
-        this.handleCreatePost = this.handleCreateRobot.bind(this);
+        this.handleUpdatePost = this.handleUpdatePost.bind(this);
+        this.handleCreatePost = this.handleCreatePost.bind(this);
 
         this.state = {
             posts: [
             ],
             modals: {
                 delete: false,
-                create:false,
+                update: false,
+                crate: false,
             },
-            actualPostId: null
+            post: {}
         };
         this.currentUser = AuthService.getCurrentUser();
 
     }
-    handleUpdatePost(id, modal) {
+    handleUpdatePost(post, modal) {
         this.setState({
-            actualPostId: id,
+            post: { ...post },
             modals: { ...this.state.modals, [modal]: true }
         })
     }
@@ -99,9 +100,6 @@ class BoardRobot extends Component {
                 {/* <CreatePostComponent operator_post_id={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} /> */}
 
                 <h1> Posts </h1>
-                <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreatePost()}>
-                    <i class="bi bi-robot"></i>
-                </button>
 
                 <div>
                     <table class="table">
@@ -112,15 +110,16 @@ class BoardRobot extends Component {
                                 <th scope="col">employee_id</th>
                                 <th scope="col">role_id</th>
                                 <th scope="col">premium</th>
+                                <th scpre="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.robots.map(
+                            {this.state.posts.map(
                                 ({ id,
                                     department_id,
                                     employee_id,
                                     role_id,
-                                    premium,}) => (
+                                    premium, }) => (
                                     <tr>
                                         <th scope="row">{id}
 
@@ -134,7 +133,13 @@ class BoardRobot extends Component {
 
                                         <td>
 
-                                            <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdatePost(id, "create")}>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdatePost({
+                                                id,
+                                                department_id,
+                                                employee_id,
+                                                role_id,
+                                                premium,
+                                            }, "create")}>
                                                 <i class="bi bi-x-octagon">
                                                 </i>
                                             </button>
@@ -150,4 +155,4 @@ class BoardRobot extends Component {
         );
     }
 }
-export default withRouter(BoardRobot);
+export default withRouter(BoardPost);

@@ -84,9 +84,6 @@ class BoardEmployee extends Component {
                 <UpdateEmployee employee={this.state.employee} handleClose={() => this.handleClose("update")} isActive={this.state.modals.update} />
                 <DeleteEmployee employee={this.state.employee} handleClose={() => this.handleClose("delete")} isActive={this.state.modals.delete} />
                 <h1> Employee </h1>
-                <button type="button" class="btn btn-outline-primary" onClick={() => this.handleUpdateEmployee()}>
-                    <i class="bi bi-robot"></i>
-                </button>
 
                 <div>
                     <table class="table">

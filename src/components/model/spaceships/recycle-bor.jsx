@@ -52,7 +52,7 @@ class RecycleBorComponent extends Component {
     if (this.checkBtn.context._errors.length === 0) {
         userService.post(`spaceships/${this.props.id}/update`,
         {
-          [this.props.borType]:this.state.borCount,
+          [this.props.borType]:this.state.borCount+this.props.borCount,
         })
         .then(
           () => {
