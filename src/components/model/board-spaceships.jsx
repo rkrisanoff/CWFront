@@ -82,8 +82,8 @@ class BoardSpaceShip extends Component {
                 <RecycleBorComponent id={this.state.activeSpaceshipId} borType={this.state.borType} handleClose={() => this.handleClose(this.state.borType)} isActive={this.state.modals[this.state.borType]} />
                 <ShowMicroreactorsComponent
                     id={this.state.activeSpaceshipId}
-                    handleClose={() => this.handleClose(this.state.modals.show_microreactors)}
-                    isActive={this.state.modals[this.state.modals.show_microreactors]}
+                    handleClose={() => this.handleClose("show_microreactors")}
+                    isActive={this.state.modals.show_microreactors}
                 />
                 <div>
                     <table class="table">
@@ -109,7 +109,7 @@ class BoardSpaceShip extends Component {
                                     <tr>
                                         <th scope="row">{id}</th>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, "b2_h6_quantity")}>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleShowMicroreactors(id)}>
                                                 <i class="bi bi-battery-charging"></i>
                                             </button>
                                         </td>

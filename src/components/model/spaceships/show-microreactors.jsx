@@ -40,7 +40,7 @@ class ShowMicroreactorsComponent extends Component {
     render() {
         return (
 
-            <Modal show={this.props.isActive} onHide={this.props.handleClose}>
+            <Modal show={this.props.isActive} onHide={this.props.handleClose} size={"lg"}>
                 <Modal.Header closeButton>
                     <Modal.Title>Microreactors in spacehip {this.props.id}</Modal.Title>
                 </Modal.Header>
@@ -50,10 +50,10 @@ class ShowMicroreactorsComponent extends Component {
                             <tr>
                                 <th scope="col">id</th>
                                 <th scope="col">name</th>
-                                <th scope="col">b2_h6_consumption_rate</th>
-                                <th scope="col">b5_h12_consumprion_rate</th>
-                                <th scope="col">b10_h14_consumtion_rate</th>
-                                <th scope="col">b12_h12_consumption_rate</th>
+                                <th scope="col">b2_h6</th>
+                                <th scope="col">b5_h12</th>
+                                <th scope="col">b10_h14</th>
+                                <th scope="col">b12_h12</th>
                                 <th scope="col">cost</th>
                             </tr>
                         </thead>
