@@ -56,7 +56,11 @@ class UpgradeBrainComponent extends Component {
         })
         .then(
           () => {
-            this.props.handleClose()
+            this.setState({
+              loading: false
+            });
+            this.props.handleClose();
+            
           },
           error => {
             const resMessage =

@@ -19,7 +19,7 @@ class BoardBrain extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        brains: data.slice(0, 50)
+                        brains: data
                     })
                 },
                 error => {
@@ -46,7 +46,7 @@ class BoardBrain extends Component {
                             {this.state.brains.map(
                                 ({ release_series, name, cost, speed }) => (
                                     <tr>
-                                        <th scope="row">{release_series}
+                                        <th scope="row" key={release_series}>{release_series}
 
                                         </th>
 

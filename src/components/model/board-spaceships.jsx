@@ -48,13 +48,29 @@ class BoardSpaceShip extends Component {
         this.setState({
             modals: { ...this.state.modals, [modal]: false }
         });
+        userService.get("spaceships/all")
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        spaceships: data.slice(0, 50)
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message || error.toString();
+                    console.log(resMessage);
+                }
+            );
     }
     componentDidMount() {
         userService.get("spaceships/all")
             .then(
                 ({ data }) => {
                     this.setState({
-                        spaceships: data.slice(0, 50)
+                        spaceships: data
                     })
                 },
                 error => {
@@ -99,7 +115,7 @@ class BoardSpaceShip extends Component {
                             {this.state.spaceships.map(
                                 ({ id, b2_h6_quantity, b5_h12_quantity, b10_h14_quantity, b12_h12_quantity, department_id, income }) => (
                                     <tr>
-                                        <th scope="row">{id}</th>
+                                        <th scope="row" key={id}>{id} </th>
                                         <td>
                                             <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleShowMicroreactors(id)}>
                                                 <i class="bi bi-battery-charging"></i>

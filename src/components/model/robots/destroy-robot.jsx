@@ -31,6 +31,9 @@ class DestroyRobotComponent extends Component {
         userService.get(`robots/${this.props.id}/delete`)
             .then(
                 () => {
+                    this.setState({
+                        loading: false
+                      });
                     this.props.handleClose()
                 },
                 error => {

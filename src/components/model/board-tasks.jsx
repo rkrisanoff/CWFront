@@ -42,6 +42,23 @@ class BoardTasks extends Component {
         this.setState({
             modals: { ...this.state.modals, [modal]: false }
         });
+        userService.get("tasks/all")
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        tasks: data.slice(0, 50)
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message || error.toString();
+                    console.log(resMessage);
+                }
+            );
+            
     }
 
     componentDidMount() {
@@ -49,7 +66,7 @@ class BoardTasks extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        tasks: data.slice(0, 50)
+                        tasks: data
                     })
                 },
                 error => {
@@ -90,7 +107,7 @@ class BoardTasks extends Component {
                             {this.state.tasks.map(
                                 ({ id, description, cost,state,creator_id,executor_id }) => (
                                     <tr>
-                                        <th scope="row">{id} </th>
+                                        <th scope="row" key={id}>{id} </th>
 
                                         <td>{cost}</td>
                                         <td>

@@ -42,7 +42,10 @@ class RepairRobotComponent extends Component {
         userService.get(`robots/${this.props.id}/repair`)
             .then(
                 () => {
-                    this.props.handleClose()
+                    this.setState({
+                        loading: false
+                    });
+                    this.props.handleClose();
                 },
                 error => {
                     const resMessage =

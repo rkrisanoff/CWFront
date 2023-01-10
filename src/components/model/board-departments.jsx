@@ -19,7 +19,7 @@ class BoardDepartment extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        departments: data.slice(0, 50)
+                        departments: data
                     })
                 },
                 error => {
@@ -48,7 +48,7 @@ class BoardDepartment extends Component {
                             {this.state.departments.map(
                                 ({ id, exracted_bor_quantity, current_resource }) => (
                                     <tr>
-                                        <th scope="row">{id}</th>
+                                        <th scope="row" key={id}>{id} </th>
                                         <td>{exracted_bor_quantity}</td>
                                         <td>{current_resource}</td>
                                     </tr>

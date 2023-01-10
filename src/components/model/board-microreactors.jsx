@@ -19,7 +19,7 @@ class BoardMicroreactor extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        microreactors: data.slice(0, 50)
+                        microreactors: data
                     })
                 },
                 error => {
@@ -49,7 +49,7 @@ class BoardMicroreactor extends Component {
                                 ({ id, name, cost, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumtion_rate, b12_h12_consumption_rate }) => (
 
                                     <tr>
-                                        <th scope="row">{id}</th>
+                                        <th scope="row" key={id}>{id} </th>
                                         <td>{name}</td>
                                         <td>{cost}</td>
                                         <td>{b2_h6_consumption_rate}</td>

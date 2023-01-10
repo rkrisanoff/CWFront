@@ -19,7 +19,7 @@ class BoardEyes extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        eyes: data.slice(0, 50)
+                        eyes: data
                     })
                 },
                 error => {
@@ -46,7 +46,7 @@ class BoardEyes extends Component {
                             {this.state.eyes.map(
                                 ({ release_series, name, cost, distance }) => (
                                     <tr>
-                                        <th scope="row">{release_series}
+                                        <th scope="row" key={release_series}>{release_series}
 
                                         </th>
 

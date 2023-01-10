@@ -58,13 +58,29 @@ class BoardEmployee extends Component {
         this.setState({
             modals: { ...this.state.modals, [modal]: false }
         });
+        userService.get("employees/all")
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        employees: data.slice(0, 50)
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message || error.toString();
+                    console.log(resMessage);
+                }
+            );
     }
     componentDidMount() {
         userService.get("employees/all")
             .then(
                 ({ data }) => {
                     this.setState({
-                        employees: data.slice(0, 50)
+                        employees: data
                     })
                 },
                 error => {
@@ -110,7 +126,7 @@ class BoardEmployee extends Component {
                                     patronymic,
                                     gender, age }) => (
                                     <tr>
-                                        <th scope="row">{id}</th>
+                                        <th scope="row" key={id}>{id} </th>
                                         <td>
                                             <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdateEmployee({ id }, "delete")}>
                                                 <i class="bi bi-x-octagon">

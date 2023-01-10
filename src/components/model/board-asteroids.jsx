@@ -16,7 +16,7 @@ class BoardAsteroid extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.state = {
             asteroids: [],
-            deposits:[],
+            deposits: [],
             activeAsteroidId: null,
             modals: {
                 showDeposits: false,
@@ -56,7 +56,7 @@ class BoardAsteroid extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        asteroids: data.slice(0, 50)
+                        asteroids: data
                     })
                 },
                 error => {
@@ -73,37 +73,37 @@ class BoardAsteroid extends Component {
         return (
             <div className="col-md-12">
                 {/* <ShowDeposits id={this.state.activeAsteroidId} handleClose={() => this.handleClose("showDeposits")} isActive={this.state.modals.showDeposits} /> */}
-                <Modal show={this.state.modals.showDeposits} onHide={()=>this.handleClose("showDeposits")}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Deposits in asteroid {this.props.id}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                {["id", "bor_quantity"].map(value => <th scope="col">{value}</th>)}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.deposits.map(
-                                ({ id, bor_quantity }) => (
-                                    <tr>
-                                        <th scope="row">{id}
-                                        </th>
-                                        <td>{bor_quantity}
-                                        </td>
-                                    </tr>
-                                )
-                            )}
-                        </tbody>
-                    </table>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={()=>this.handleClose("showDeposits")}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                <Modal show={this.state.modals.showDeposits} onHide={() => this.handleClose("showDeposits")}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Deposits in asteroid {this.props.id}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    {["id", "bor_quantity"].map(value => <th scope="col">{value}</th>)}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.deposits.map(
+                                    ({ id, bor_quantity }) => (
+                                        <tr>
+                                            <th scope="row">{id}
+                                            </th>
+                                            <td>{bor_quantity}
+                                            </td>
+                                        </tr>
+                                    )
+                                )}
+                            </tbody>
+                        </table>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.handleClose("showDeposits")}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <div>
                     <h1>Asteroids</h1>
 
@@ -117,7 +117,7 @@ class BoardAsteroid extends Component {
                             {this.state.asteroids.map(
                                 ({ id, name, distance }) => (
                                     <tr>
-                                        <th scope="row">{id}</th>
+                                        <th scope="row" key={id}>{id} </th>
                                         <td>{name}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-primary" onClick={() => this.handleShowDeposits(id, "showDeposits")}>

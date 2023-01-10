@@ -19,7 +19,7 @@ class BoardBody extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        bodies: data.slice(0, 50)
+                        bodies: data
                     })
                 },
                 error => {
@@ -46,7 +46,7 @@ class BoardBody extends Component {
                             {this.state.bodies.map(
                                 ({ release_series, name, cost, max_hit_points }) => (
                                     <tr>
-                                        <th scope="row">{release_series}
+                                        <th scope="row"key={release_series}>{release_series}
 
                                         </th>
 

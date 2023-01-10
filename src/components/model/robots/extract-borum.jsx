@@ -55,6 +55,9 @@ class ExtractBorumComponent extends Component {
                 })
                 .then(
                     () => {
+                        this.setState({
+                            loading: false
+                          });
                         this.props.handleClose()
                     },
                     error => {

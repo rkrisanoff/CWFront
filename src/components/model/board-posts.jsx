@@ -73,7 +73,7 @@ class BoardPost extends Component {
             .then(
                 ({ data }) => {
                     this.setState({
-                        posts: data.slice(0, 50)
+                        posts: data
                     })
                 },
                 error => {
@@ -121,9 +121,7 @@ class BoardPost extends Component {
                                     role_id,
                                     premium, }) => (
                                     <tr>
-                                        <th scope="row">{id}
-
-                                        </th>
+                                        <th scope="row" key={id}>{id} </th>
                                         <td>{department_id}</td>
                                         <td>{employee_id}</td>
 

@@ -139,6 +139,9 @@ export default class Register extends Component {
             })
             .then(
                 () => {
+                  this.setState({
+                    loading: false
+                  });
                     this.props.handleClose()
                 },
                 error => {
