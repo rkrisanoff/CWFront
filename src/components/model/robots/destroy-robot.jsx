@@ -60,7 +60,7 @@ class DestroyRobotComponent extends Component {
                     <Modal.Title>Destroying</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure that you want to destroy robot?
+                    Are you sure that you want to destroy robot {this.props.id}?
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleClose}>

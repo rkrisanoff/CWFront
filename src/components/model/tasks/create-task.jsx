@@ -57,7 +57,7 @@ class MoveRobotComponent extends Component {
         if (this.checkBtn.context._errors.length === 0) {
             userService.post(`tasks/create`,
                 {
-                    creator_id:this.props.creator_id,
+                    creatorPostId:this.props.creatorPostId,
                     description: this.state.description,
                     cost:this.state.cost
                 })

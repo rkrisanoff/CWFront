@@ -55,6 +55,8 @@ class AuthService {
       const decodedJwtData = JSON.parse(decodedJwtJsonData)
       user['roles'] = decodedJwtData.roles;
       user['id'] = decodedJwtData.uid;
+      user['post_id'] = decodedJwtData.post;
+
     }
 
     return user;

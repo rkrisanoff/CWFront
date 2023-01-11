@@ -187,6 +187,8 @@ class BoardSpaceShip extends Component {
                                                 <i class="bi bi-battery-charging"></i>
                                             </button>
                                         </td>
+                                        <td>{department_id}</td>
+                                        <td>{income}</td>
                                         <td>{b2_h6_quantity}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b2_h6_quantity, "b2_h6_quantity")}>
@@ -211,8 +213,8 @@ class BoardSpaceShip extends Component {
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>
-                                        <td>{department_id}</td>
-                                        <td>{income}</td>
+                                        
+                                        
 
                                     </tr>
                                 )

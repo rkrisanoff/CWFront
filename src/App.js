@@ -146,6 +146,11 @@ class App extends Component {
                 employees
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to={"/manager/tasks"} className="nav-link">
+                  tasks
+                </Link>
+              </li>
             </>)}
             {currentUser && (<>
               
@@ -197,6 +202,7 @@ class App extends Component {
             <Route path="/operator/robots" element={<BoardRobots />} />
             <Route path="/operator/asteroids" element={<BoardAsteroids />} />
             <Route path="/operator/tasks" element={<BoardTasks />} />
+            <Route path="/manager/tasks" element={<BoardTasks />} />
             <Route path="/operator/bodies" element={<BoardBodies />} />
             <Route path="/operator/eyes" element={<BoardEyes />} />
             <Route path="/operator/brains" element={<BoardBrains />} />

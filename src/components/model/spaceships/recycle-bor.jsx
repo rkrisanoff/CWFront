@@ -50,9 +50,9 @@ class RecycleBorComponent extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-        userService.post(`spaceships/${this.props.id}/update`,
+        userService.post(`spaceships/${this.props.id}/recycle`,
         {
-          [this.props.borType]:Number(this.state.borCount)+Number(this.props.borCount),
+          [this.props.borType]:Number(this.state.borCount),
         })
         .then(
           () => {
@@ -93,7 +93,7 @@ class RecycleBorComponent extends Component {
               this.form = c;
             }}
           >
-            Choose number of bor you want to recycle
+            Choose number of bor {this.props.borType} you want to recycle 
             <br/>
             Specify number of bor
             <div className="form-group">

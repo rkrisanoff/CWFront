@@ -28,7 +28,7 @@ class AcceptTaskComponent extends Component {
 
     userService.post(`tasks/${this.props.id}/update`,
       {
-        executor_id: this.props.executor_id
+        executorPostId: this.props.executorPostId
       })
       .then(
         () => {

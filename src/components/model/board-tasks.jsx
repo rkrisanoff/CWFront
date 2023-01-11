@@ -58,7 +58,7 @@ class BoardTasks extends Component {
                     console.log(resMessage);
                 }
             );
-            
+
     }
 
     componentDidMount() {
@@ -78,24 +78,29 @@ class BoardTasks extends Component {
                     console.log(resMessage);
                 }
             );
-            
+
 
     }
     render() {
         return (
             <div className="col-md-12">
-                <AcceptTaskComponent executor_id={this.currentUser.id} id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
-                <CreateTaskComponent creator_id={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
+                <AcceptTaskComponent executorPostId={this.currentUser.id} id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
+
                 <h1> Tasks </h1>
-                <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreateTask()}>
-                    <i class="bi bi-journal-plus"></i>
-                </button>
+                {this.currentUser.roles.includes("manager") && <>
+                    <CreateTaskComponent creatorPostId={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
+                    <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreateTask()}>
+                        <i class="bi bi-journal-plus"></i>
+                    </button></>
+                }
+
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">id</th>
                                 <th scope="col">cost</th>
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                                 <th scope="col">description</th>
                                 <th scope="col">state</th>
@@ -105,21 +110,26 @@ class BoardTasks extends Component {
                         </thead>
                         <tbody>
                             {this.state.tasks.map(
-                                ({ id, description, cost,state,creator_id,executor_id }) => (
+                                ({ id, description, cost, state, executorPostId, creatorPostId }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
 
                                         <td>{cost}</td>
                                         <td>
-                                            {!executor_id && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
+                                            {!executorPostId && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>}
-                                            
+                                            </td>
+                                            <td>
+                                            {executorPostId===this.currentUser.post && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
+                                                <i class="bi bi-journal-arrow-up"></i>
+                                            </button>}
+
                                         </td>
                                         <td>{state}</td>
                                         <td>{description}</td>
-                                        <td>{creator_id}</td>
-                                        <td>{executor_id}</td>
+                                        <td>{creatorPostId}</td>
+                                        <td>{executorPostId}</td>
                                     </tr>
                                 )
                             )}

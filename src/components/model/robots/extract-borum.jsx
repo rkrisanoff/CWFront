@@ -93,7 +93,7 @@ class ExtractBorumComponent extends Component {
                         ref={c => {
                             this.form = c;
                         }}
-                    >
+                    >   Sending robot {this.props.id} to extract bot
                         <br />
                         Specify deposit id
                         <div className="form-group">

@@ -95,7 +95,7 @@ class MoveRobotComponent extends Component {
               this.form = c;
             }}
           >
-            Choose where are you going to move Robot
+            Choose where are you going to move Robot {this.props.id}
             <br />
             Specify asteroid id
             <div className="form-group">

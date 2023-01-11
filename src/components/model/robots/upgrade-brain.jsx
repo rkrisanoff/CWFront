@@ -97,7 +97,7 @@ class UpgradeBrainComponent extends Component {
               this.form = c;
             }}
           >
-            Choose brain you want to replace at robot
+            Choose brain you want to replace at robot {this.props.id}
             <br/>
 
             Specify brain id

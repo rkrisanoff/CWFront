@@ -96,7 +96,7 @@ class UpgradeEyesComponent extends Component {
               this.form = c;
             }}
           >
-            Choose eyes you want to replace at robot
+            Choose eyes you want to replace at robot {this.props.id}
             <br/>
 
             Specify eyes id

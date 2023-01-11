@@ -96,7 +96,7 @@ class UpgradeBodyComponent extends Component {
               this.form = c;
             }}
           >
-            Choose body you want to replace at robot
+            Choose body you want to replace at robot {this.props.id}
             <br/>
             Specify body id
             <div className="form-group">
