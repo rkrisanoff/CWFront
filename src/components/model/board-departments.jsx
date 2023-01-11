@@ -40,16 +40,16 @@ class BoardDepartment extends Component {
                         <thead>
                             <tr>
                                 <th scope="col">id</th>
-                                <th scope="col">exracted_bor_quantity</th>
+                                <th scope="col">extracted_bor_quantity</th>
                                 <th scope="col"> current_resource</th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.departments.map(
-                                ({ id, exracted_bor_quantity, current_resource }) => (
+                                ({ id, extracted_bor_quantity, current_resource }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
-                                        <td>{exracted_bor_quantity}</td>
+                                        <td>{extracted_bor_quantity}</td>
                                         <td>{current_resource}</td>
                                     </tr>
                                 )

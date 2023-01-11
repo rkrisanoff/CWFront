@@ -19,11 +19,11 @@ class ShowMicroreactorsComponent extends Component {
 
 
     componentDidMount() {
-        userService.get(`spaceships/${this.props.id}/microreactors`)
+        this.props.id && userService.get(`spaceships/${this.props.id}/microreactors`)
             .then(
                 ({ data }) => {
                     this.setState({
-                        deposits: data.slice(0, 50)
+                        microreactors: data
                     })
                 },
                 error => {
@@ -59,14 +59,14 @@ class ShowMicroreactorsComponent extends Component {
                         </thead>
                         <tbody>
                             {this.state.microreactors.map(
-                                ({ id, name, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumtion_rate, b12_h12_consumption_rate, cost }) => (
+                                ({ id, name, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumption_rate, b12_h12_consumption_rate, cost }) => (
                                     <tr>
                                         <th scope="row">{id}</th>
                                         <td>{name}</td>
                                         <td>{cost}</td>
                                         <td>{b2_h6_consumption_rate}</td>
                                         <td>{b5_h12_consumprion_rate}</td>
-                                        <td>{b10_h14_consumtion_rate}</td>
+                                        <td>{b10_h14_consumption_rate}</td>
                                         <td>{b12_h12_consumption_rate}</td>
                                     </tr>
                                 )

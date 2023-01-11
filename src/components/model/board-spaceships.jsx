@@ -6,7 +6,8 @@ import { withRouter } from '../../common/with-router';
 import RecycleBorComponent from "./spaceships/recycle-bor";
 import ShowMicroreactorsComponent from "./spaceships/show-microreactors";
 import userService from "../../services/user.service";
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 class BoardSpaceShip extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class BoardSpaceShip extends Component {
             },
             activeSpaceshipId: null,
             borType: null,
+            microreactors: [],
         };
     }
     handleUpdateSpaceship(id, borCount, modal) {
@@ -38,6 +40,22 @@ class BoardSpaceShip extends Component {
     }
 
     handleShowMicroreactors(id) {
+        id && userService.get(`spaceships/${id}/microreactors`)
+            .then(
+                ({ data }) => {
+                    this.setState({
+                        microreactors: data
+                    })
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message || error.toString();
+                    console.log(resMessage);
+                }
+            );
         this.setState({
             activeSpaceshipId: id,
             modals: { ...this.state.modals, show_microreactors: true }
@@ -94,11 +112,51 @@ class BoardSpaceShip extends Component {
                     handleClose={() => this.handleClose(this.state.borType)}
                     isActive={this.state.modals[this.state.borType]}
                 />
-                <ShowMicroreactorsComponent
+                {/* <ShowMicroreactorsComponent
                     id={this.state.activeSpaceshipId}
                     handleClose={() => this.handleClose("show_microreactors")}
                     isActive={this.state.modals.show_microreactors}
-                />
+                /> */}
+                <Modal show={this.state.modals.show_microreactors} onHide={this.props.handleClose} size={"lg"}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Microreactors in spacehip {this.state.activeSpaceshipId}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">name</th>
+                                <th scope="col">b2_h6</th>
+                                <th scope="col">b5_h12</th>
+                                <th scope="col">b10_h14</th>
+                                <th scope="col">b12_h12</th>
+                                <th scope="col">cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.microreactors.map(
+                                ({ id, name, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumption_rate, b12_h12_consumption_rate, cost }) => (
+                                    <tr>
+                                        <th scope="row">{id}</th>
+                                        <td>{name}</td>
+                                        <td>{cost}</td>
+                                        <td>{b2_h6_consumption_rate}</td>
+                                        <td>{b5_h12_consumprion_rate}</td>
+                                        <td>{b10_h14_consumption_rate}</td>
+                                        <td>{b12_h12_consumption_rate}</td>
+                                    </tr>
+                                )
+                            )}
+                        </tbody>
+                    </table>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => this.handleClose("show_microreactors")}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
                 <div>
                     <table class="table">
                         <thead>
