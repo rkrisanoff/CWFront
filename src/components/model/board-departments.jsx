@@ -35,6 +35,8 @@ class BoardDepartment extends Component {
     render() {
         return (
             <div className="col-md-12">
+                <h1> Departments </h1>
+
                 <div>
                     <table class="table">
                         <thead>

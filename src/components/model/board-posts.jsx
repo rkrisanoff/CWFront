@@ -116,26 +116,23 @@ class BoardPost extends Component {
                         <tbody>
                             {this.state.posts.map(
                                 ({ id,
-                                    department_id,
-                                    employee_id,
-                                    role_id,
+                                    departmentId,
+                                    employeeId,
+                                    roleId,
                                     premium, }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
-                                        <td>{department_id}</td>
-                                        <td>{employee_id}</td>
-
-                                        <td>{role_id}</td>
-
+                                        <td>{departmentId}</td>
+                                        <td>{employeeId}</td>
+                                        <td>{roleId}</td>
                                         <td>{premium}</td>
-
                                         <td>
 
                                             <button type="button" class="btn btn-outline-danger btn-sm" onClick={() => this.handleUpdatePost({
                                                 id,
-                                                department_id,
-                                                employee_id,
-                                                role_id,
+                                                departmentId,
+                                                employeeId,
+                                                roleId,
                                                 premium,
                                             }, "create")}>
                                                 <i class="bi bi-x-octagon">

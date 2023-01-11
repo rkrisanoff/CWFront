@@ -120,7 +120,7 @@ class App extends Component {
                 </Link>
               </li>
             </>)}
-            {currentUser && this.state.showOperatorBoard && (<>
+            {currentUser && this.state.showManagerBoard && (<>
               <li className="nav-item">
                 <Link to={"/manager/spaceships"} className="nav-link">
                   spaceship
@@ -131,8 +131,6 @@ class App extends Component {
                   microreactor
                 </Link>
               </li>
-            </>)}
-            {currentUser && (<>
               <li className="nav-item">
                 <Link to={"/manager/departments"} className="nav-link">
                   departments
@@ -148,6 +146,9 @@ class App extends Component {
                 employees
                 </Link>
               </li>
+            </>)}
+            {currentUser && (<>
+              
               
             </>)}
 

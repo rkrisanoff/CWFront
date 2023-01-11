@@ -105,6 +105,8 @@ class BoardSpaceShip extends Component {
     render() {
         return (
             <div className="col-md-12">
+                <h1> Spaceships </h1>
+
                 <RecycleBorComponent
                     id={this.state.activeSpaceshipId}
                     borType={this.state.borType}

@@ -36,6 +36,8 @@ class BoardMicroreactor extends Component {
         return (
             <div className="col-md-12">
                 <div>
+                <h1> Microreactors </h1>
+
                     <table class="table">
                         <thead>
                             <tr>

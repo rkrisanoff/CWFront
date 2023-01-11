@@ -72,12 +72,13 @@ class BoardAsteroid extends Component {
     render() {
         return (
             <div className="col-md-12">
-                {/* <ShowDeposits id={this.state.activeAsteroidId} handleClose={() => this.handleClose("showDeposits")} isActive={this.state.modals.showDeposits} /> */}
                 <Modal show={this.state.modals.showDeposits} onHide={() => this.handleClose("showDeposits")}>
                     <Modal.Header closeButton>
                         <Modal.Title>Deposits in asteroid {this.props.id}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                <h1> Asteroids </h1>
+
                         <table class="table">
                             <thead>
                                 <tr>
