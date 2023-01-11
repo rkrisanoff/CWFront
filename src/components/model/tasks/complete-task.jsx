@@ -8,7 +8,7 @@ import { withRouter } from '../../../common/with-router';
 import userService from "../../../services/user.service";
 
 
-class AcceptTaskComponent extends Component {
+class CompleteTask extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,10 +25,10 @@ class AcceptTaskComponent extends Component {
       message: "",
       loading: true
     });
-    console.log(this.props.executorPostId)
+
     userService.post(`tasks/${this.props.id}/update`,
       {
-        executorPostId: this.props.executorPostId
+        status:'complete'
       })
       .then(
         () => {
@@ -56,21 +56,21 @@ class AcceptTaskComponent extends Component {
 
       <Modal show={this.props.isActive} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Accepting</Modal.Title>
+          <Modal.Title>Completing</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure that you want to accept the task?
+          Are you sure that you want to note this task as completed?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.props.handleClose}>
             Cancel
           </Button>
           <Button variant="success" onClick={this.handleSubmit} disabled={this.state.loading}>
-            Accept
+            Complete
           </Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
-export default withRouter(AcceptTaskComponent);
+export default withRouter(CompleteTask);

@@ -8,6 +8,7 @@ import ShowMicroreactorsComponent from "./spaceships/show-microreactors";
 import userService from "../../services/user.service";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import WorkSpaceship from "./spaceships/work-spaceship";
 
 class BoardSpaceShip extends Component {
     constructor(props) {
@@ -15,6 +16,8 @@ class BoardSpaceShip extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleUpdateSpaceship = this.handleUpdateSpaceship.bind(this);
         this.handleShowMicroreactors = this.handleShowMicroreactors.bind(this);
+        this.handleWorkSpaceship = this.handleWorkSpaceship.bind(this);
+        this.handleCloseShowMicroreactors = this.handleCloseShowMicroreactors.bind(this);
         this.state = {
             spaceships: [
             ],
@@ -23,12 +26,20 @@ class BoardSpaceShip extends Component {
                 b5_h12_quantity: false,
                 b10_h14_quantity: false,
                 b12_h12_quantity: false,
-                show_microreactors: false
+                show_microreactors: false,
+                work:false,
             },
             activeSpaceshipId: null,
             borType: null,
             microreactors: [],
         };
+    }
+
+    handleWorkSpaceship(id) {
+        this.setState({
+            activeSpaceshipId: id,
+            modals: { ...this.state.modals, "work": true }
+        })
     }
     handleUpdateSpaceship(id, borCount, modal) {
         this.setState({
@@ -62,6 +73,11 @@ class BoardSpaceShip extends Component {
         });
     }
 
+    handleCloseShowMicroreactors(){
+        this.setState({
+            modals: { ...this.state.modals, "show_microreactors": false }
+        });
+    }
     handleClose(modal) {
         this.setState({
             modals: { ...this.state.modals, [modal]: false }
@@ -114,11 +130,10 @@ class BoardSpaceShip extends Component {
                     handleClose={() => this.handleClose(this.state.borType)}
                     isActive={this.state.modals[this.state.borType]}
                 />
-                {/* <ShowMicroreactorsComponent
-                    id={this.state.activeSpaceshipId}
-                    handleClose={() => this.handleClose("show_microreactors")}
-                    isActive={this.state.modals.show_microreactors}
-                /> */}
+                <WorkSpaceship 
+                id={this.state.activeSpaceshipId}
+                    handleClose={() => this.handleClose("work")}
+                    isActive={this.state.modals.work} />
                 <Modal show={this.state.modals.show_microreactors} onHide={this.props.handleClose} size={"lg"}>
                 <Modal.Header closeButton>
                     <Modal.Title>Microreactors in spacehip {this.state.activeSpaceshipId}</Modal.Title>
@@ -154,7 +169,7 @@ class BoardSpaceShip extends Component {
                     </table>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.handleClose("show_microreactors")}>
+                    <Button variant="secondary" onClick={() => this.handleCloseShowMicroreactors()}>
                         Close
                     </Button>
                 </Modal.Footer>
@@ -167,6 +182,7 @@ class BoardSpaceShip extends Component {
                                 <th scope="col"></th>
                                 <th scope="col">department_id</th>
                                 <th scope="col">income</th>
+                                <th scope="col"></th>
                                 <th scope="col">b2_h6_quantity</th>
                                 <th scope="col"></th>
                                 <th scope="col">b5_h12_quantity</th>
@@ -189,6 +205,11 @@ class BoardSpaceShip extends Component {
                                         </td>
                                         <td>{department_id}</td>
                                         <td>{income}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleWorkSpaceship(id)}>
+                                                <i class="bi bi-battery-charging"></i>
+                                            </button>
+                                        </td>
                                         <td>{b2_h6_quantity}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => this.handleUpdateSpaceship(id, b2_h6_quantity, "b2_h6_quantity")}>

@@ -6,6 +6,7 @@ import { withRouter } from '../../common/with-router';
 import AcceptTaskComponent from "./tasks/accept-task";
 import userService from "../../services/user.service";
 import CreateTaskComponent from "./tasks/create-task";
+import CompleteTask from "./tasks/complete-task";
 
 class BoardTasks extends Component {
     constructor(props) {
@@ -20,10 +21,12 @@ class BoardTasks extends Component {
             tasks: [],
             modals: {
                 accept: false,
-                create: false
+                create: false,
+                complete: false
             },
             actualTaskId: null
         };
+        console.log(this.currentUser);
     }
     handleUpdateTask(id, modal) {
         this.setState({
@@ -80,15 +83,16 @@ class BoardTasks extends Component {
             );
 
 
-    }
+    };
+    
     render() {
         return (
             <div className="col-md-12">
-                <AcceptTaskComponent executorPostId={this.currentUser.id} id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
-
+                <AcceptTaskComponent executorPostId={this.currentUser.post_id} id={this.state.actualTaskId} handleClose={() => this.handleClose("accept")} isActive={this.state.modals.accept} />
+                <CompleteTask executorPostId={this.currentUser.post_id} id={this.state.actualTaskId} handleClose={() => this.handleClose("complete")} isActive={this.state.modals.complete} />
                 <h1> Tasks </h1>
                 {this.currentUser.roles.includes("manager") && <>
-                    <CreateTaskComponent creatorPostId={this.currentUser.id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
+                    <CreateTaskComponent creatorPostId={this.currentUser.post_id} handleClose={() => this.handleClose("create")} isActive={this.state.modals.create} />
                     <button type="button" class="btn btn-outline-primary" onClick={() => this.handleCreateTask()}>
                         <i class="bi bi-journal-plus"></i>
                     </button></>
@@ -119,10 +123,10 @@ class BoardTasks extends Component {
                                             {!executorPostId && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>}
-                                            </td>
-                                            <td>
-                                            {executorPostId===this.currentUser.post && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
-                                                <i class="bi bi-journal-arrow-up"></i>
+                                        </td>
+                                        <td>
+                                            {executorPostId === this.currentUser.post_id && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "complete")}>
+                                                <i class="bi bi-infinity"></i>
                                             </button>}
 
                                         </td>

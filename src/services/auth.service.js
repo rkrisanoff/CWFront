@@ -56,7 +56,6 @@ class AuthService {
       user['roles'] = decodedJwtData.roles;
       user['id'] = decodedJwtData.uid;
       user['post_id'] = decodedJwtData.post;
-
     }
 
     return user;
