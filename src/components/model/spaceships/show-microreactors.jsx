@@ -50,11 +50,11 @@ class ShowMicroreactorsComponent extends Component {
                             <tr>
                                 <th scope="col">id</th>
                                 <th scope="col">name</th>
+                                <th scope="col">cost</th>
                                 <th scope="col">b2_h6</th>
                                 <th scope="col">b5_h12</th>
                                 <th scope="col">b10_h14</th>
                                 <th scope="col">b12_h12</th>
-                                <th scope="col">cost</th>
                             </tr>
                         </thead>
                         <tbody>

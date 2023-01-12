@@ -27,7 +27,7 @@ class BoardSpaceShip extends Component {
                 b10_h14_quantity: false,
                 b12_h12_quantity: false,
                 show_microreactors: false,
-                work:false,
+                work: false,
             },
             activeSpaceshipId: null,
             borType: null,
@@ -73,7 +73,7 @@ class BoardSpaceShip extends Component {
         });
     }
 
-    handleCloseShowMicroreactors(){
+    handleCloseShowMicroreactors() {
         this.setState({
             modals: { ...this.state.modals, "show_microreactors": false }
         });
@@ -130,50 +130,51 @@ class BoardSpaceShip extends Component {
                     handleClose={() => this.handleClose(this.state.borType)}
                     isActive={this.state.modals[this.state.borType]}
                 />
-                <WorkSpaceship 
-                id={this.state.activeSpaceshipId}
+                <WorkSpaceship
+                    id={this.state.activeSpaceshipId}
                     handleClose={() => this.handleClose("work")}
                     isActive={this.state.modals.work} />
                 <Modal show={this.state.modals.show_microreactors} onHide={this.props.handleClose} size={"lg"}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Microreactors in spacehip {this.state.activeSpaceshipId}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">name</th>
-                                <th scope="col">b2_h6</th>
-                                <th scope="col">b5_h12</th>
-                                <th scope="col">b10_h14</th>
-                                <th scope="col">b12_h12</th>
-                                <th scope="col">cost</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.microreactors.sort((a,b)=>a.id - b.id).map(
-                                ({ id, name, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumption_rate, b12_h12_consumption_rate, cost }) => (
-                                    <tr>
-                                        <th scope="row">{id}</th>
-                                        <td>{name}</td>
-                                        <td>{cost}</td>
-                                        <td>{b2_h6_consumption_rate}</td>
-                                        <td>{b5_h12_consumprion_rate}</td>
-                                        <td>{b10_h14_consumption_rate}</td>
-                                        <td>{b12_h12_consumption_rate}</td>
-                                    </tr>
-                                )
-                            )}
-                        </tbody>
-                    </table>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.handleCloseShowMicroreactors()}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Microreactors in spacehip {this.state.activeSpaceshipId}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">name</th>
+                                    <th scope="col">cost</th>
+                                    <th scope="col">b2_h6</th>
+                                    <th scope="col">b5_h12</th>
+                                    <th scope="col">b10_h14</th>
+                                    <th scope="col">b12_h12</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.microreactors.sort((a, b) => a.id - b.id).map(
+                                    ({ id, name, b2_h6_consumption_rate, b5_h12_consumption_rate, b10_h14_consumption_rate, b12_h12_consumption_rate, cost }) => (
+                                        <tr>
+                                            <th scope="row">{id}</th>
+                                            <td>{name}</td>
+                                            <td>{cost}</td>
+                                            <td>{b2_h6_consumption_rate}</td>
+                                            <td>{b5_h12_consumption_rate}</td>
+                                            <td>{b10_h14_consumption_rate}</td>
+                                            <td>{b12_h12_consumption_rate}</td>
+                                        </tr>
+                                    )
+                                )}
+                            </tbody>
+                        </table>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.handleCloseShowMicroreactors()}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <div>
                     <table class="table">
                         <thead>
@@ -194,7 +195,7 @@ class BoardSpaceShip extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.spaceships.map(
+                            {this.state.spaceships.sort((a, b) => a.id - b.id).map(
                                 ({ id, b2_h6_quantity, b5_h12_quantity, b10_h14_quantity, b12_h12_quantity, department_id, income }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
@@ -234,8 +235,8 @@ class BoardSpaceShip extends Component {
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>
                                         </td>
-                                        
-                                        
+
+
 
                                     </tr>
                                 )
