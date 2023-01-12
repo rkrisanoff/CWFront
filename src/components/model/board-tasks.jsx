@@ -113,19 +113,19 @@ class BoardTasks extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.tasks.map(
+                            {this.state.tasks.sort((a,b)=>a.id - b.id).map(
                                 ({ id, description, cost, state, executorPostId, creatorPostId }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
 
                                         <td>{cost}</td>
                                         <td>
-                                            {!executorPostId && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
+                                            {!executorPostId && this.currentUser.post_id != -1 && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "accept")}>
                                                 <i class="bi bi-journal-arrow-up"></i>
                                             </button>}
                                         </td>
                                         <td>
-                                            {executorPostId === this.currentUser.post_id && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "complete")}>
+                                            {executorPostId === this.currentUser.post_id && state!="complete" && <button type="button" class="btn btn-outline-success btn-sm" onClick={() => this.handleUpdateTask(id, "complete")}>
                                                 <i class="bi bi-infinity"></i>
                                             </button>}
 

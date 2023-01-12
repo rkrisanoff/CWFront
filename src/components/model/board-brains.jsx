@@ -43,7 +43,7 @@ class BoardBrain extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.brains.map(
+                            {this.state.brains.sort((a,b)=>a.releaseSeries - b.releaseSeries).map(
                                 ({ releaseSeries, name, cost, speed }) => (
                                     <tr>
                                         <th scope="row" key={releaseSeries}>{releaseSeries}

@@ -57,7 +57,7 @@ class WorkSpaceship extends Component {
 
             <Modal show={this.props.isActive} onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Destroying</Modal.Title>
+                    <Modal.Title>Work</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Are you sure that you want to force this spaceship to work {this.props.id}?

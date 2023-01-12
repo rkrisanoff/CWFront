@@ -28,7 +28,7 @@ class CompleteTask extends Component {
 
     userService.post(`tasks/${this.props.id}/update`,
       {
-        status:'complete'
+        state:'complete'
       })
       .then(
         () => {

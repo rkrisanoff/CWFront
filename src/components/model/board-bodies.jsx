@@ -43,7 +43,7 @@ class BoardBody extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.bodies.map(
+                            {this.state.bodies.sort((a,b)=>a.releaseSeries - b.releaseSeries).map(
                                 ({ releaseSeries, name, cost, max_hit_points }) => (
                                     <tr>
                                         <th scope="row"key={releaseSeries}>{releaseSeries}

@@ -118,7 +118,7 @@ class BoardEmployee extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.employees.map(
+                            {this.state.employees.sort((a,b)=>a.id - b.id).map(
                                 ({ id,
                                     username,
                                     first_name,

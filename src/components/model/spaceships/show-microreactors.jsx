@@ -58,7 +58,7 @@ class ShowMicroreactorsComponent extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.microreactors.map(
+                            {this.state.microreactors.sort((a,b)=>a.id - b.id).map(
                                 ({ id, name, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumption_rate, b12_h12_consumption_rate, cost }) => (
                                     <tr>
                                         <th scope="row">{id}</th>

@@ -82,22 +82,22 @@ class BoardSpaceShip extends Component {
         this.setState({
             modals: { ...this.state.modals, [modal]: false }
         });
-        userService.get("spaceships/all")
-            .then(
-                ({ data }) => {
-                    this.setState({
-                        spaceships: data.slice(0, 50)
-                    })
-                },
-                error => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message || error.toString();
-                    console.log(resMessage);
-                }
-            );
+        // userService.get("spaceships/all")
+        //     .then(
+        //         ({ data }) => {
+        //             this.setState({
+        //                 spaceships: data.slice(0, 50)
+        //             })
+        //         },
+        //         error => {
+        //             const resMessage =
+        //                 (error.response &&
+        //                     error.response.data &&
+        //                     error.response.data.message) ||
+        //                 error.message || error.toString();
+        //             console.log(resMessage);
+        //         }
+        //     );
     }
     componentDidMount() {
         userService.get("spaceships/all")
@@ -152,7 +152,7 @@ class BoardSpaceShip extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.microreactors.map(
+                            {this.state.microreactors.sort((a,b)=>a.id - b.id).map(
                                 ({ id, name, b2_h6_consumption_rate, b5_h12_consumprion_rate, b10_h14_consumption_rate, b12_h12_consumption_rate, cost }) => (
                                     <tr>
                                         <th scope="row">{id}</th>

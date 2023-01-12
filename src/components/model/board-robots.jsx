@@ -135,7 +135,7 @@ class BoardRobot extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.robots.map(
+                            {this.state.robots.sort((a,b)=>a.id - b.id).map(
                                 ({ asteroid_id,
                                     body_series,
                                     brain_series,

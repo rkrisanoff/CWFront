@@ -86,7 +86,7 @@ class BoardAsteroid extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.deposits.map(
+                                {this.state.deposits.sort((a,b)=>a.id - b.id).map(
                                     ({ id, bor_quantity }) => (
                                         <tr>
                                             <th scope="row">{id}
@@ -115,7 +115,7 @@ class BoardAsteroid extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.asteroids.map(
+                            {this.state.asteroids.sort((a,b)=>a.id - b.id).map(
                                 ({ id, name, distance }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>

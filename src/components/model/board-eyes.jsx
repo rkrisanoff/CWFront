@@ -43,7 +43,7 @@ class BoardEyes extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.eyes.map(
+                            {this.state.eyes.sort((a,b)=>a.id - b.id).map(
                                 ({ releaseSeries, name, cost, distance }) => (
                                     <tr>
                                         <th scope="row" key={releaseSeries}>{releaseSeries}

@@ -47,7 +47,7 @@ class BoardDepartment extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.departments.map(
+                            {this.state.departments.sort((a,b)=>a.id - b.id).map(
                                 ({ id, extracted_bor_quantity, current_resource }) => (
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
