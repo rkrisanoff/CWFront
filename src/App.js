@@ -105,6 +105,11 @@ class App extends Component {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to={"/operator/departments"} className="nav-link">
+                  departments
+                </Link>
+                </li>
+              <li className="nav-item">
                 <Link to={"/operator/eyes"} className="nav-link">
                   eyes
                 </Link>
@@ -206,6 +211,8 @@ class App extends Component {
             <Route path="/operator/bodies" element={<BoardBodies />} />
             <Route path="/operator/eyes" element={<BoardEyes />} />
             <Route path="/operator/brains" element={<BoardBrains />} />
+            <Route path="/operator/departments" element={<BoardDepartments />} />
+
             <Route path="/manager/spaceships" element={<BoardSpaceships />} />
             <Route path="/manager/microreactors" element={<BoardMicroreactors />} />
             <Route path="/manager/departments" element={<BoardDepartments />} />

@@ -41,7 +41,7 @@ class BoardMicroreactor extends Component {
                     <table class="table">
                         <thead>
                             <tr>
-                                {["id", "name", "cost", "b2_h6_consumption_rate",
+                                {["id", "name", "b2_h6_consumption_rate",
                                     "b5_h12_consumption_rate", "b10_h14_consumption_rate",
                                     "b12_h12_consumption_rate"].map(value => <th scope="col">{value}</th>)}
                             </tr>
@@ -53,7 +53,7 @@ class BoardMicroreactor extends Component {
                                     <tr>
                                         <th scope="row" key={id}>{id} </th>
                                         <td>{name}</td>
-                                        <td>{cost}</td>
+                                        {/* <td>{cost}</td> */}
                                         <td>{b2_h6_consumption_rate}</td>
                                         <td>{b5_h12_consumption_rate}</td>
                                         <td>{b10_h14_consumption_rate}</td>

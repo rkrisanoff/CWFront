@@ -106,8 +106,8 @@ class BoardTasks extends Component {
                                 <th scope="col">cost</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
-                                <th scope="col">description</th>
                                 <th scope="col">state</th>
+                                <th scope="col">description</th>
                                 <th scope="col">creator_id</th>
                                 <th scope="col">executor_id</th>
                             </tr>
